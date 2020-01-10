@@ -4,21 +4,12 @@ import sys
 import tempfile
 import yaml
 import uvicorn
-from fastapi import FastAPI
 from pkg.config import CONFIG, CFG_FILE
 from pkg.constants.version import SOFTWARE_VERSION
+from pkg.rest import app
 from pkg.utils.console import panic
 from pkg.utils.errors import get_raised_error
 from pkg.utils.logger import DEFAULT_LOGGER, LOG_CONFIG
-
-app = FastAPI()
-
-
-@app.get('/')
-async def root():
-    return {
-        'software': SOFTWARE_VERSION,
-    }
 
 
 def get_settings():
