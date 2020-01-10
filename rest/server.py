@@ -6,7 +6,6 @@ import yaml
 import uvicorn
 from pkg.config import CONFIG, CFG_FILE
 from pkg.constants.version import SOFTWARE_VERSION
-from pkg.rest import app
 from pkg.utils.console import panic
 from pkg.utils.errors import get_raised_error
 from pkg.utils.logger import DEFAULT_LOGGER, LOG_CONFIG
@@ -46,6 +45,8 @@ if __name__ == "__main__":
 
             DEFAULT_LOGGER.info(f'{SOFTWARE_VERSION} starting, PID: {p.pid}, File: {pid_file_full}')
             DEFAULT_LOGGER.info(f'Config loaded from {CFG_FILE}:\n{yaml.dump(secure_config, default_flow_style=False)}')
+
+            from pkg.rest import app
             uvicorn.run(app, host=host, port=port, log_config=LOG_CONFIG)
     except:
         if pid_ok:
