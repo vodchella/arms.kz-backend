@@ -47,6 +47,10 @@ if __name__ == "__main__":
             DEFAULT_LOGGER.info(f'Config loaded from {CFG_FILE}:\n{yaml.dump(secure_config, default_flow_style=False)}')
 
             from pkg.rest import app
+
+            @app.on_event("startup")
+            async def startup_event():
+                DEFAULT_LOGGER.info(f'REST server started on {host}:{port}\n')
             uvicorn.run(app, host=host, port=port, log_config=LOG_CONFIG)
     except:
         if pid_ok:
