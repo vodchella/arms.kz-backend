@@ -1,7 +1,7 @@
 from pkg.utils.git import get_top_commit
 
 
-APP_NAME = 'MyBeer'
+APP_NAME = 'ArmGym'
 SERVER_NAME = f'{APP_NAME} REST server'
 SERVER_VERSION = '0.01'
 
