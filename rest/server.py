@@ -1,9 +1,11 @@
 import copy
+import sys
 import yaml
 import uvicorn
 from fastapi import FastAPI
 from pkg.config import CONFIG, CFG_FILE
 from pkg.constants.version import SOFTWARE_VERSION
+from pkg.utils.console import panic
 from pkg.utils.logger import DEFAULT_LOGGER, LOG_CONFIG
 
 app = FastAPI()
@@ -17,6 +19,9 @@ async def root():
 
 
 if __name__ == "__main__":
+    if sys.version_info < (3, 8):
+        panic('We need minimum Python version 3.8 to run. Current version: %s.%s.%s' % sys.version_info[:3])
+
     secure_config = copy.deepcopy(CONFIG)
     secure_config['postgres']['pass'] = '*****'
 
