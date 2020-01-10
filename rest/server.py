@@ -1,5 +1,7 @@
 import copy
+import pid
 import sys
+import tempfile
 import yaml
 import uvicorn
 from fastapi import FastAPI
@@ -40,8 +42,22 @@ if __name__ == "__main__":
 
     host, port, pg_host, pg_port, pg_user, pg_pass, pg_db = get_settings()
 
-    secure_config = copy.deepcopy(CONFIG)
-    secure_config['postgres']['pass'] = '*****'
+    pid_file = f'armgym-rest-{port}'
+    pid_dir = tempfile.gettempdir()
+    pid_file_full = f'{pid_dir}/{pid_file}.pid'
+    pid_ok = False
+    try:
+        with pid.PidFile(pid_file, piddir=pid_dir) as p:
+            pid_ok = True
 
-    DEFAULT_LOGGER.info(f'Config loaded from {CFG_FILE}:\n{yaml.dump(secure_config, default_flow_style=False)}')
-    uvicorn.run(app, host=host, port=port, log_config=LOG_CONFIG)
+            secure_config = copy.deepcopy(CONFIG)
+            secure_config['postgres']['pass'] = '*****'
+
+            DEFAULT_LOGGER.info(f'{SOFTWARE_VERSION} starting, PID: {p.pid}, File: {pid_file_full}')
+            DEFAULT_LOGGER.info(f'Config loaded from {CFG_FILE}:\n{yaml.dump(secure_config, default_flow_style=False)}')
+            uvicorn.run(app, host=host, port=port, log_config=LOG_CONFIG)
+    except:
+        if pid_ok:
+            raise
+        else:
+            DEFAULT_LOGGER.critical(f'Something wrong with {pid_file_full}. Maybe it\'s locked?')
