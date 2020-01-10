@@ -1,0 +1,6 @@
+*.log*
+*.pyc
+.idea
+.venv*
+__pycache__
+config.yml
