@@ -1,9 +1,15 @@
 import logging
 import sys
 import traceback
-from pkg.constants.error_codes import ERROR_TEXT_MAP
+from pkg.constants.error_codes import ERROR_CUSTOM_EXCEPTION, ERROR_TEXT_MAP
 from pkg.constants.logging import REST_LOGGER_NAME
 from starlette.responses import JSONResponse
+
+
+class CustomException(Exception):
+    def __init__(self, detail: str) -> None:
+        self.error_code = ERROR_CUSTOM_EXCEPTION
+        self.detail = detail
 
 
 def get_raised_error(full: bool = False):
@@ -12,7 +18,7 @@ def get_raised_error(full: bool = False):
         return
     e = traceback.format_exception(*info)
     if full:
-        return '\n'.join(e)
+        return ''.join(e)
     else:
         return (e[-1:][0]).strip('\n')
 
@@ -31,11 +37,14 @@ def response_error(code: int,
 
     if log_stacktrace:
         error_stacktrace = get_raised_error(True)
-        stacktrace_log_msg = f'\n{error_stacktrace}\n' if error_stacktrace else ''
+        stacktrace_log_msg = f'{error_stacktrace}\n' if error_stacktrace else ''
+
+    log = f'{stacktrace_log_msg}'
 
     if log_error:
-        logger = logging.getLogger(default_logger)
-        log = f'Status: {status_code}, JSON: {error_json}{stacktrace_log_msg}'
-        logger.error(log)
+        log = f'Status {status_code}, JSON: {error_json}{log}\n'
+
+    logger = logging.getLogger(default_logger)
+    logger.error(log)
 
     return JSONResponse(content=error_json, status_code=status_code)
