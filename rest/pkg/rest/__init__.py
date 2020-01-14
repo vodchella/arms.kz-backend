@@ -1,7 +1,6 @@
 from fastapi import FastAPI
 from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import RequestValidationError
-
 from pkg.config import CONFIG
 from pkg.constants.error_codes import ERROR_UNHANDLED_EXCEPTION, ERROR_CUSTOM_EXCEPTION
 from pkg.rest.routers.root import router as root_router
