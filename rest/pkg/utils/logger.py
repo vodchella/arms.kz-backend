@@ -43,11 +43,11 @@ LOG_CONFIG = {
         },
         'uvicorn.error': {
             'level': 'INFO',
-            'handlers': ['internal', 'timedRotatingFile']
+            'handlers': []
         },
         'uvicorn.access': {
             'level': 'INFO',
-            'handlers': ['internal', 'timedRotatingFile']
+            'handlers': []
         },
     }
 }
