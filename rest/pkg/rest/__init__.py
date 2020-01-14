@@ -1,5 +1,7 @@
 from fastapi import FastAPI
 from fastapi.encoders import jsonable_encoder
+from fastapi.exceptions import RequestValidationError
+
 from pkg.config import CONFIG
 from pkg.constants.error_codes import ERROR_UNHANDLED_EXCEPTION, ERROR_CUSTOM_EXCEPTION
 from pkg.rest.routers.root import router as root_router
@@ -42,6 +44,17 @@ async def http_exceptions_handler(request: Request, exc: HTTPException):
 
 @app.exception_handler(ValidationError)
 async def http_exceptions_handler(request: Request, exc: ValidationError):
+    return response_error(
+        ERROR_UNHANDLED_EXCEPTION,
+        str(exc),
+        HTTP_422_UNPROCESSABLE_ENTITY,
+        detail=jsonable_encoder(exc.errors()),
+        log_stacktrace=False
+    )
+
+
+@app.exception_handler(RequestValidationError)
+async def http_exceptions_handler(request: Request, exc: RequestValidationError):
     return response_error(
         ERROR_UNHANDLED_EXCEPTION,
         str(exc),
