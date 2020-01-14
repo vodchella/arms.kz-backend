@@ -26,6 +26,7 @@ def get_raised_error(full: bool = False):
 def response_error(code: int,
                    message: str = None,
                    status_code: int = 500,
+                   detail=None,
                    default_logger: str = REST_LOGGER_NAME,
                    log_stacktrace: bool = True,
                    log_error: bool = True):
@@ -34,6 +35,9 @@ def response_error(code: int,
 
     error_json = {'error': {'code': code, 'message': msg}}
     stacktrace_log_msg = ''
+
+    if detail:
+        error_json['error']['detail'] = detail
 
     if log_stacktrace:
         error_stacktrace = get_raised_error(True)

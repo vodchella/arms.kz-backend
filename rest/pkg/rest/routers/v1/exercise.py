@@ -1,10 +1,11 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Path
+from pkg.constants.regexp import REGEXP_ID
 
 router = APIRouter()
 
 
-@router.get('/')
-async def root():
+@router.get('/{user_id}/list')
+async def root(user_id: str = Path(..., regex=REGEXP_ID)):
     return {
-        'test_exercise': True,
+        'user_id': user_id,
     }
