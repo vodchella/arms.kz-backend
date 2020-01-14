@@ -4,6 +4,7 @@ import traceback
 from pkg.constants.error_codes import ERROR_CUSTOM_EXCEPTION, ERROR_TEXT_MAP
 from pkg.constants.logging import REST_LOGGER_NAME
 from starlette.responses import JSONResponse
+from typing import Dict, List
 
 
 class CustomException(Exception):
@@ -26,7 +27,7 @@ def get_raised_error(full: bool = False):
 def response_error(code: int,
                    message: str = None,
                    status_code: int = 500,
-                   detail=None,
+                   detail: List[Dict] = None,
                    default_logger: str = REST_LOGGER_NAME,
                    log_stacktrace: bool = True,
                    log_error: bool = True):
