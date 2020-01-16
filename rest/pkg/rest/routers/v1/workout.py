@@ -1,10 +1,17 @@
+from datetime import datetime
 from fastapi import APIRouter
+from pkg.models.workout import WorkoutBase
+from typing import List
 
 router = APIRouter()
 
 
-@router.get('/')
+@router.get('/list', response_model=List[WorkoutBase])
 async def root():
-    return {
-        'test_workout': True,
-    }
+    return [
+        WorkoutBase(
+            id='qqq',
+            workout_date=datetime.utcnow(),
+            comment=''
+        )
+    ]
