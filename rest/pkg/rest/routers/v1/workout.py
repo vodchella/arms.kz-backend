@@ -23,13 +23,13 @@ async def view(workout_id: str = Path(..., regex=REGEXP_ID)):
                 ),
                 left_hand=HandWork(
                     weight=50,
-                    iterations_count=6,
+                    iterations=6,
                 ),
                 right_hand=HandWork(
                     weight=52,
-                    iterations_count=5,
+                    iterations=5,
                 ),
-                approaches_count=5,
+                approaches=5,
             ),
             WorkoutExerciseBothHands(
                 exercise=Exercise(
@@ -39,9 +39,9 @@ async def view(workout_id: str = Path(..., regex=REGEXP_ID)):
                 ),
                 hands=HandWork(
                     weight=52,
-                    iterations_count=3,
+                    iterations=3,
                 ),
-                approaches_count=4,
+                approaches=4,
             ),
         ]
     )
@@ -52,7 +52,7 @@ async def list_workouts():
     return [
         WorkoutBase(
             id='qqq',
-            workout_date=datetime.utcnow(),
+            date=datetime.utcnow(),
             comment=''
         )
     ]

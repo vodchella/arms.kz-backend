@@ -7,12 +7,12 @@ from typing import List, Union
 
 class HandWork(BaseModel):
     weight: float
-    iterations_count: int
+    iterations: int
 
 
 class WorkoutExerciseBase(BaseModel):
     exercise: Exercise
-    approaches_count: int
+    approaches: int
 
 
 class WorkoutExerciseBothHands(WorkoutExerciseBase):

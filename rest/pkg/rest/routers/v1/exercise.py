@@ -43,9 +43,9 @@ async def exercise_history(exercise_id: str = Path(..., regex=REGEXP_ID)):
             ),
             hands=HandWork(
                 weight=52,
-                iterations_count=3,
+                iterations=3,
             ),
-            approaches_count=4,
+            approaches=4,
         ),
         ExerciseHistoryBothHands(
             workout=WorkoutBase(
@@ -55,8 +55,8 @@ async def exercise_history(exercise_id: str = Path(..., regex=REGEXP_ID)):
             ),
             hands=HandWork(
                 weight=47,
-                iterations_count=5,
+                iterations=5,
             ),
-            approaches_count=5,
+            approaches=5,
         ),
     ]
