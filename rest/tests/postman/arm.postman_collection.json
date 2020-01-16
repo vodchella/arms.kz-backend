@@ -1,0 +1,188 @@
+{
+	"info": {
+		"_postman_id": "6fe41418-7e68-4cc5-9071-cea6fcb8fa18",
+		"name": "arm",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "exercise",
+			"item": [
+				{
+					"name": "list",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "secret_token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "Some body"
+						},
+						"url": {
+							"raw": "http://localhost:8517/v1/exercise/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8517",
+							"path": [
+								"v1",
+								"exercise",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "history",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "secret_token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "Some body"
+						},
+						"url": {
+							"raw": "http://localhost:8517/v1/exercise/:id/history",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8517",
+							"path": [
+								"v1",
+								"exercise",
+								":id",
+								"history"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "some_id"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "workout",
+			"item": [
+				{
+					"name": "list",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "secret_token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "Some body"
+						},
+						"url": {
+							"raw": "http://localhost:8517/v1/workout/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8517",
+							"path": [
+								"v1",
+								"workout",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "view",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "secret_token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "Some body"
+						},
+						"url": {
+							"raw": "http://localhost:8517/v1/workout/:id/view",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8517",
+							"path": [
+								"v1",
+								"workout",
+								":id",
+								"view"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "some_id"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
