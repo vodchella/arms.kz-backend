@@ -1,5 +1,5 @@
 from datetime import datetime
-from pkg.models import NamedEntity
+from pkg.rest.models import NamedEntity
 
 
 class ExerciseCategory(NamedEntity):

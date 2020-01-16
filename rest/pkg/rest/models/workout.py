@@ -1,6 +1,6 @@
 from datetime import datetime
-from pkg.models import DBEntity
-from pkg.models.exercise import Exercise
+from pkg.rest.models import DBEntity
+from pkg.rest.models.exercise import Exercise
 from pydantic import BaseModel
 from typing import List, Union
 

@@ -1,4 +1,4 @@
-from pkg.models.workout import WorkoutBase, HandWork
+from pkg.rest.models.workout import WorkoutBase, HandWork
 from pydantic import BaseModel
 
 

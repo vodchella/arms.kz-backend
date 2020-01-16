@@ -1,8 +1,8 @@
 from datetime import datetime
 from fastapi import APIRouter, Path
 from pkg.constants.regexp import REGEXP_ID
-from pkg.models.exercise import Exercise
-from pkg.models.workout import WorkoutBase, Workout, WorkoutExerciseSeparateHands, WorkoutExerciseBothHands, HandWork
+from pkg.rest.models.exercise import Exercise
+from pkg.rest.models.workout import WorkoutBase, Workout, WorkoutExerciseSeparateHands, WorkoutExerciseBothHands, HandWork
 from typing import List
 
 router = APIRouter()
