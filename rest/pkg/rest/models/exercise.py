@@ -1,5 +1,6 @@
 from datetime import datetime
 from pkg.rest.models import NamedEntity
+from typing import Optional
 
 
 class ExerciseCategory(NamedEntity):
@@ -11,5 +12,5 @@ class Exercise(NamedEntity):
 
 
 class ExerciseForListing(Exercise):
-    last_workout_date: datetime
+    last_workout_date: Optional[datetime]
     category: ExerciseCategory
