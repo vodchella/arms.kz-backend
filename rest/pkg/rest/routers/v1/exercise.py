@@ -7,7 +7,7 @@ router = APIRouter()
 
 
 @router.get('/list', response_model=List[ExerciseForListing])
-async def root():
+async def list_exercises():
     return [
         ExerciseForListing(
             id='111',
