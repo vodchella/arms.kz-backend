@@ -10,6 +10,6 @@ class Exercise(NamedEntity):
     pass
 
 
-class ExerciseOut(Exercise):
+class ExerciseForListing(Exercise):
     last_workout_date: datetime
     category: ExerciseCategory
