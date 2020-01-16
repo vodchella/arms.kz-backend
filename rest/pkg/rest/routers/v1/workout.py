@@ -12,7 +12,7 @@ router = APIRouter()
 async def view(workout_id: str = Path(..., regex=REGEXP_ID)):
     return Workout(
         id=workout_id,
-        workout_date=datetime.utcnow(),
+        date=datetime.utcnow(),
         comment='Generated workout',
         exercises=[
             WorkoutExerciseSeparateHands(

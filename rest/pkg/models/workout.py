@@ -25,7 +25,7 @@ class WorkoutExerciseSeparateHands(WorkoutExerciseBase):
 
 
 class WorkoutBase(DBEntity):
-    workout_date: datetime
+    date: datetime
     comment: str
 
 
