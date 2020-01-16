@@ -3,7 +3,7 @@ from sqlalchemy import Boolean, Column, ForeignKey, String, DateTime
 from sqlalchemy.orm import relationship
 
 
-class ExerciseCategory_(Base):
+class ExerciseCategory(Base):
     __tablename__ = 'exercise_categories'
 
     id = Column(String, primary_key=True)
@@ -21,4 +21,4 @@ class Exercise(Base):
     both_hands = Column(Boolean)
     last_workout_date = Column(DateTime(timezone=True))
 
-    category = relationship('ExerciseCategory_')
+    category = relationship('ExerciseCategory')

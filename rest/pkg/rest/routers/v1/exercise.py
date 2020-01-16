@@ -27,8 +27,7 @@ def get_db():
 
 @router.get('/list', response_model=List[ExerciseForListing])
 async def list_exercises(db: Session = Depends(get_db)):
-    result = get(db)
-    return result
+    return get(db)
     # return [
     #     ExerciseForListing(
     #         id='111',
