@@ -2,6 +2,7 @@ aiofiles==0.4.0
 aniso8601==7.0.0
 async-exit-stack==1.0.1
 async-generator==1.10
+behave==1.2.6
 certifi==2019.11.28
 chardet==3.0.4
 Click==7.0
@@ -17,6 +18,8 @@ idna==2.8
 itsdangerous==1.1.0
 Jinja2==2.10.3
 MarkupSafe==1.1.1
+parse==1.14.0
+parse-type==0.5.2
 pid==2.2.5
 promise==2.3
 pydantic==1.3
