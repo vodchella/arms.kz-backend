@@ -7,7 +7,7 @@ class ExerciseCategory(NamedEntity):
 
 
 class Exercise(NamedEntity):
-    pass
+    both_hands: bool
 
 
 class ExerciseForListing(Exercise):

@@ -12,12 +12,14 @@ async def list_exercises():
         ExerciseForListing(
             id='111',
             name='Бицепс на скамье Скотта',
+            both_hands=False,
             last_workout_date=datetime.utcnow(),
             category=ExerciseCategory(id='aaa', name='Бицепс')
         ),
         ExerciseForListing(
             id='222',
             name='Пронация',
+            both_hands=False,
             last_workout_date=datetime.utcnow(),
             category=ExerciseCategory(id='bbb', name='Предплечье')
         ),
