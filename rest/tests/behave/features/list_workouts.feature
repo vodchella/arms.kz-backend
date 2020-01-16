@@ -1,6 +1,5 @@
-# Created by vodchella at 16.01.2020
-Feature: #Enter feature name here
-  # Enter feature description here
+Feature: List workouts
 
-  Scenario: # Enter scenario name here
-    # Enter steps here
+  Scenario: Do it right
+      Given I try to get workout list right
+       Then I will get Ok http status
