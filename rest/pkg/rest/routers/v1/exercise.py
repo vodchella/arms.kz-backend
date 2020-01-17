@@ -1,6 +1,6 @@
 from datetime import datetime
 from fastapi import APIRouter, Path, Depends
-from pkg.db import SessionLocal
+from pkg.db import get_session
 from pkg.db.models.exercise import Exercise
 from pkg.constants.regexp import REGEXP_ID
 from pkg.rest.models.exercise import ExerciseForListing
@@ -12,22 +12,13 @@ from typing import List, Union
 router = APIRouter()
 
 
-def get(db: Session):
-    return db.query(Exercise).all()
-
-
-# Dependency
-def get_db():
-    try:
-        db = SessionLocal()
-        yield db
-    finally:
-        db.close()
+def get(session: Session):
+    return session.query(Exercise).all()
 
 
 @router.get('/list', response_model=List[ExerciseForListing])
-async def list_exercises(db: Session = Depends(get_db)):
-    return get(db)
+async def list_exercises(session: Session = Depends(get_session)):
+    return get(session)
     # return [
     #     ExerciseForListing(
     #         id='111',

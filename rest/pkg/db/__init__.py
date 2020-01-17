@@ -17,3 +17,12 @@ engine = create_engine(SQLALCHEMY_DATABASE_URL, pool_size=_pg_pool)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 Base = declarative_base()
+
+
+# Dependency
+def get_session():
+    try:
+        session = SessionLocal()
+        yield session
+    finally:
+        session.close()
