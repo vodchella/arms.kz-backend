@@ -18,6 +18,7 @@ async def view(workout_id: str = Path(..., regex=REGEXP_ID)):
             WorkoutExerciseSeparateHands(
                 exercise=Exercise(
                     id='111',
+                    category_id='eee',
                     name='Бицепс на скамье Скотта',
                     both_hands=False,
                 ),
@@ -34,6 +35,7 @@ async def view(workout_id: str = Path(..., regex=REGEXP_ID)):
             WorkoutExerciseBothHands(
                 exercise=Exercise(
                     id='222',
+                    category_id='rrr',
                     name='Строгий бицепс',
                     both_hands=True,
                 ),
