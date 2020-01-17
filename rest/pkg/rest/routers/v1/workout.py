@@ -1,6 +1,7 @@
 from datetime import datetime
 from fastapi import APIRouter, Path
 from pkg.constants.regexp import REGEXP_ID
+from pkg.db.services.workout_service import WorkoutService
 from pkg.rest.models.exercise import Exercise
 from pkg.rest.models.workout import WorkoutBase, Workout, WorkoutExerciseSeparateHands, WorkoutExerciseBothHands, HandWork
 from typing import List
@@ -51,10 +52,4 @@ async def view(workout_id: str = Path(..., regex=REGEXP_ID)):
 
 @router.get('/list', response_model=List[WorkoutBase])
 async def list_workouts():
-    return [
-        WorkoutBase(
-            id='qqq',
-            date=datetime.utcnow(),
-            comment=''
-        )
-    ]
+    return await WorkoutService.list('TWRvTJ4GkUTP6dGr')
