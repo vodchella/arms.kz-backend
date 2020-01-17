@@ -3,7 +3,7 @@ from fastapi import APIRouter, Path, Depends
 from pkg.db import SessionLocal
 from pkg.db.models.exercise import Exercise
 from pkg.constants.regexp import REGEXP_ID
-from pkg.rest.models.exercise import ExerciseForListing, ExerciseCategory
+from pkg.rest.models.exercise import ExerciseForListing
 from pkg.rest.models.exercise_history import ExerciseHistoryBothHands, ExerciseHistorySeparateHands
 from pkg.rest.models.workout import WorkoutBase, HandWork
 from sqlalchemy.orm import Session

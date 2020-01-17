@@ -1,0 +1,15 @@
+app:
+  type: dev
+postgres:
+  host: localhost
+  port: 5432
+  user: postgres
+  pass: postgres
+  pool: 10
+  db: arm
+rest:
+  listen_host: localhost
+  listen_port: 8517
+log:
+  file_name: armgym-rest.log
+  path: .log
