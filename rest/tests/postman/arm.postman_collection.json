@@ -9,6 +9,44 @@
 			"name": "exercise",
 			"item": [
 				{
+					"name": "list-categories",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "secret_token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "Some body"
+						},
+						"url": {
+							"raw": "http://localhost:8517/v1/exercise/list-categories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8517",
+							"path": [
+								"v1",
+								"exercise",
+								"list-categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "list",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
