@@ -9,3 +9,6 @@ INSERT INTO public.exercise_categories (id, user_id, name) VALUES ('bmhXQrL3gUV5
 
 INSERT INTO public.exercises (id, user_id, category_id, name, both_hands, last_workout_date) VALUES ('mqwaAIQblczmUExp', 'TWRvTJ4GkUTP6dGr', '9SbV89xpAYmneGQw', 'Лопата с круглой ручкой', false, '2020-01-16 00:00:00.000000');
 INSERT INTO public.exercises (id, user_id, category_id, name, both_hands, last_workout_date) VALUES ('3j7VPlHrsw5vf9YR', 'TWRvTJ4GkUTP6dGr', 'zg8nYLJaNhdmSOeG', 'Строгий бицепс', true, '2020-01-16 00:00:00.000000');
+
+INSERT INTO public.workouts (id, user_id, date, comment) VALUES ('5WaAWF4KnsoX2eX8', 'TWRvTJ4GkUTP6dGr', '2020-01-17 12:48:47.939000', 'Some workout');
+INSERT INTO public.workouts (id, user_id, date, comment) VALUES ('rFvW35XX90LzDCQp', 'TWRvTJ4GkUTP6dGr', '2020-01-15 12:49:06.739000', null);

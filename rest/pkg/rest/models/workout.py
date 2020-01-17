@@ -2,7 +2,7 @@ from datetime import datetime
 from pkg.rest.models import DBEntity
 from pkg.rest.models.exercise import Exercise
 from pydantic import BaseModel
-from typing import List, Union
+from typing import List, Union, Optional
 
 
 class HandWork(BaseModel):
@@ -26,7 +26,7 @@ class WorkoutExerciseSeparateHands(WorkoutExerciseBase):
 
 class WorkoutBase(DBEntity):
     date: datetime
-    comment: str
+    comment: Optional[str]
 
 
 class Workout(WorkoutBase):

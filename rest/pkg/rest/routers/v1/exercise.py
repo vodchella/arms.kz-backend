@@ -1,10 +1,10 @@
 from datetime import datetime
 from fastapi import APIRouter, Path
+from pkg.db.services.exercise_service import ExerciseService
 from pkg.constants.regexp import REGEXP_ID
 from pkg.rest.models.exercise import ExerciseForListing, ExerciseCategory
 from pkg.rest.models.exercise_history import ExerciseHistoryBothHands, ExerciseHistorySeparateHands
 from pkg.rest.models.workout import WorkoutBase, HandWork
-from pkg.db.services.exercise_service import ExerciseService
 from typing import List, Union
 
 
