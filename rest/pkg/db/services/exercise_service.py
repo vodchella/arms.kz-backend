@@ -5,6 +5,13 @@ from sqlalchemy import desc
 
 class ExerciseService:
     @staticmethod
+    async def view(exercise_id: str):
+        exercises = Exercise.__table__
+        query = exercises.select() \
+            .where(exercises.c.id == exercise_id)
+        return await db.fetch_one(query)
+
+    @staticmethod
     async def list(user_id: str):
         exercises = Exercise.__table__
         query = exercises.select() \

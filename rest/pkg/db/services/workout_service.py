@@ -1,6 +1,6 @@
 from pkg.db import db
-from pkg.db.models.exercise import Exercise
 from pkg.db.models.workout import Workout, WorkoutExercise
+from pkg.db.services.exercise_service import ExerciseService
 from sqlalchemy import desc
 
 
@@ -20,12 +20,9 @@ class WorkoutService:
             exercises_list = await db.fetch_all(query)
 
             exercises_array = []
-            exercises = Exercise.__table__
             for ex in exercises_list:
+                exercise = await ExerciseService.view(ex['exercise_id'])
                 exercise_dict = dict(ex)
-                query = exercises.select()\
-                    .where(exercises.c.id == exercise_dict['exercise_id'])
-                exercise = await db.fetch_one(query)
                 exercise_dict['exercise'] = exercise
                 exercises_array.append(exercise_dict)
 
