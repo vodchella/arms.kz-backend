@@ -1,4 +1,4 @@
-from pkg.rest.models.workout import WorkoutBase, HandWork
+from pkg.rest.models.workout import WorkoutBase
 from pydantic import BaseModel
 
 
@@ -8,9 +8,11 @@ class ExerciseHistoryBase(BaseModel):
 
 
 class ExerciseHistoryBothHands(ExerciseHistoryBase):
-    hands: HandWork
+    pass
+    # hands: HandWork
 
 
 class ExerciseHistorySeparateHands(ExerciseHistoryBase):
-    left_hand: HandWork
-    right_hand: HandWork
+    pass
+    # left_hand: HandWork
+    # right_hand: HandWork

@@ -2,26 +2,18 @@ from datetime import datetime
 from pkg.rest.models import DBEntity
 from pkg.rest.models.exercise import Exercise
 from pydantic import BaseModel
-from typing import List, Union, Optional
-
-
-class HandWork(BaseModel):
-    weight: float
-    iterations: int
+from typing import List, Optional
 
 
 class WorkoutExerciseBase(BaseModel):
     exercise: Exercise
-    approaches: int
-
-
-class WorkoutExerciseBothHands(WorkoutExerciseBase):
-    hands: HandWork
-
-
-class WorkoutExerciseSeparateHands(WorkoutExerciseBase):
-    left_hand: HandWork
-    right_hand: HandWork
+    approaches: Optional[int]
+    lh_weight: Optional[float]
+    lh_value: Optional[int]
+    rh_weight: Optional[float]
+    rh_value: Optional[int]
+    bh_weight: Optional[float]
+    bh_value: Optional[int]
 
 
 class WorkoutBase(DBEntity):
@@ -30,4 +22,4 @@ class WorkoutBase(DBEntity):
 
 
 class Workout(WorkoutBase):
-    exercises: List[Union[WorkoutExerciseBothHands, WorkoutExerciseSeparateHands]]
+    exercises: List[WorkoutExerciseBase]
