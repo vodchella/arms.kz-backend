@@ -8,9 +8,9 @@ class ExerciseCategory(NamedEntity):
 
 
 class Exercise(NamedEntity):
+    category_id: str
     both_hands: bool
 
 
 class ExerciseForListing(Exercise):
     last_workout_date: Optional[datetime]
-    category: ExerciseCategory

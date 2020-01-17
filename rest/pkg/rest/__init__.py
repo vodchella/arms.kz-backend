@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import RequestValidationError
+from pkg.db import db
 from pkg.config import CONFIG
 from pkg.constants.error_codes import ERROR_UNHANDLED_EXCEPTION, ERROR_CUSTOM_EXCEPTION
 from pkg.rest.routers.root import router as root_router
@@ -17,9 +18,15 @@ app.include_router(root_router)
 app.include_router(v1_router, prefix='/v1')
 
 
-@app.on_event("startup")
+@app.on_event('startup')
 async def startup_event():
+    await db.connect()
     DEFAULT_LOGGER.info(f'REST server started on {CONFIG["rest"]["listen_host"]}:{CONFIG["rest"]["listen_port"]}\n')
+
+
+@app.on_event('shutdown')
+async def shutdown():
+    await db.disconnect()
 
 
 @app.exception_handler(Exception)
