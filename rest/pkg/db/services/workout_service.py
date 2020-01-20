@@ -38,7 +38,7 @@ class WorkoutService:
         return await db.fetch_all(query)
 
     @staticmethod
-    async def exercise_history(exercise_id: str):
+    async def view_exercise_history(exercise_id: str):
         we = WorkoutExercise.__table__
         workouts = Workout.__table__
         query = we.select(we)\

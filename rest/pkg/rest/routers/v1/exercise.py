@@ -16,10 +16,10 @@ async def list_exercises():
 
 
 @router.get('/list-categories', response_model=List[ExerciseCategory])
-async def list_exercises():
+async def list_categories():
     return await ExerciseService.list_categories('TWRvTJ4GkUTP6dGr')
 
 
 @router.get('/{exercise_id}/history', response_model=List[WorkoutExerciseForListing])
-async def exercise_history(exercise_id: str = Path(..., regex=REGEXP_ID)):
-    return await WorkoutService.exercise_history(exercise_id)
+async def view_exercise_history(exercise_id: str = Path(..., regex=REGEXP_ID)):
+    return await WorkoutService.view_exercise_history(exercise_id)
