@@ -6,7 +6,6 @@ from typing import List, Optional
 
 
 class WorkoutExerciseBase(BaseModel):
-    exercise: Exercise
     approaches: Optional[int]
     lh_weight: Optional[float]
     lh_value: Optional[int]
@@ -16,10 +15,18 @@ class WorkoutExerciseBase(BaseModel):
     bh_value: Optional[int]
 
 
+class WorkoutExerciseForWorkoutView(WorkoutExerciseBase):
+    exercise: Exercise
+
+
+class WorkoutExerciseForListing(WorkoutExerciseBase):
+    workout_id: str
+
+
 class WorkoutBase(DBEntity):
     date: datetime
     comment: Optional[str]
 
 
 class Workout(WorkoutBase):
-    exercises: List[WorkoutExerciseBase]
+    exercises: List[WorkoutExerciseForWorkoutView]
