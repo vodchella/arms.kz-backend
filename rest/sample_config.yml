@@ -11,5 +11,5 @@ rest:
   listen_host: localhost
   listen_port: 8517
 log:
-  file_name: armgym-rest.log
+  file_name: arms-rest.log
   path: .log
