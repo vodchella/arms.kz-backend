@@ -17,7 +17,7 @@ if __name__ == "__main__":
     host = CONFIG['rest']['listen_host']
     port = int(CONFIG['rest']['listen_port'])
 
-    pid_file = f'armgym-rest-{port}'
+    pid_file = f'arms-rest-{port}'
     pid_dir = tempfile.gettempdir()
     pid_file_full = f'{pid_dir}/{pid_file}.pid'
     pid_ok = False

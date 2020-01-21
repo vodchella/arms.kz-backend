@@ -10,5 +10,5 @@ def before_all(context: Context):
         raise Exception('Can\'t connect to server')
     if 'software' not in json:
         raise Exception('Invalid response format')
-    if not json['software'].startswith('ArmGym REST server v'):
+    if not json['software'].startswith('Arms.kz REST server v'):
         raise Exception('Invalid software version')
