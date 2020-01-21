@@ -15,7 +15,7 @@ from starlette.status import HTTP_422_UNPROCESSABLE_ENTITY
 
 app = FastAPI()
 app.include_router(root_router)
-app.include_router(v1_router, prefix='/v1')
+app.include_router(v1_router, prefix='/api/v1')
 
 
 @app.on_event('startup')

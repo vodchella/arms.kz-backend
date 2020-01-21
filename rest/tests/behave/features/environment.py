@@ -5,7 +5,7 @@ from tests.behave.utils import checked_behave_request
 # noinspection PyUnusedLocal
 def before_all(context: Context):
     try:
-        json = checked_behave_request('GET', 'http://localhost:8517/')
+        json = checked_behave_request('GET', 'http://localhost:8517/api/')
     except:
         raise Exception('Can\'t connect to server')
     if 'software' not in json:

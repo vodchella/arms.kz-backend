@@ -4,7 +4,7 @@ from pkg.constants.version import SOFTWARE_VERSION
 router = APIRouter()
 
 
-@router.get('/')
+@router.get('/api/')
 async def root():
     return {
         'software': SOFTWARE_VERSION,

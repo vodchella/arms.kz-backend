@@ -31,13 +31,14 @@
 							"raw": "Some body"
 						},
 						"url": {
-							"raw": "http://localhost:8517/v1/exercise/list-categories",
+							"raw": "http://localhost:8517/api/v1/exercise/list-categories",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8517",
 							"path": [
+								"api",
 								"v1",
 								"exercise",
 								"list-categories"
@@ -69,13 +70,14 @@
 							"raw": "Some body"
 						},
 						"url": {
-							"raw": "http://localhost:8517/v1/exercise/list",
+							"raw": "http://localhost:8517/api/v1/exercise/list",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8517",
 							"path": [
+								"api",
 								"v1",
 								"exercise",
 								"list"
@@ -107,13 +109,14 @@
 							"raw": "Some body"
 						},
 						"url": {
-							"raw": "http://localhost:8517/v1/exercise/:id/history",
+							"raw": "http://localhost:8517/api/v1/exercise/:id/history",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8517",
 							"path": [
+								"api",
 								"v1",
 								"exercise",
 								":id",
@@ -122,7 +125,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "some_id"
+									"value": "mqwaAIQblczmUExp"
 								}
 							]
 						}
@@ -158,13 +161,14 @@
 							"raw": "Some body"
 						},
 						"url": {
-							"raw": "http://localhost:8517/v1/workout/list",
+							"raw": "http://localhost:8517/api/v1/workout/list",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8517",
 							"path": [
+								"api",
 								"v1",
 								"workout",
 								"list"
@@ -196,13 +200,14 @@
 							"raw": "Some body"
 						},
 						"url": {
-							"raw": "http://localhost:8517/v1/workout/:id/view",
+							"raw": "http://localhost:8517/api/v1/workout/:id/view",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8517",
 							"path": [
+								"api",
 								"v1",
 								"workout",
 								":id",
@@ -211,7 +216,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "some_id"
+									"value": "5WaAWF4KnsoX2eX8"
 								}
 							]
 						}
