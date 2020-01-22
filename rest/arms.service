@@ -1,0 +1,13 @@
+[Unit]
+Description=Arms.kz REST server service
+After=postgresql.service
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+ExecStart=/bin/bash /path/to/run-in-venv.sh
+
+[Install]
+WantedBy=multi-user.target
