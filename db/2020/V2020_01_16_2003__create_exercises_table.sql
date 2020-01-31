@@ -12,7 +12,10 @@ create table exercises
 			references exercise_categories,
 	name text not null,
 	both_hands boolean not null,
-	last_workout_date timestamp with time zone
+	last_workout_id char(16)
+		constraint exercises_workouts_id_fk
+			references workouts
+				on delete set null
 );
 
 alter table exercises owner to postgres;
