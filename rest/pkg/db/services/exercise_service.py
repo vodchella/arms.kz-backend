@@ -18,9 +18,8 @@ class ExerciseService:
         e = Exercise.__table__
         w = Workout.__table__
         query = Select(columns=[*e.c, w.c.date.label('last_workout_date')]) \
-            .select_from(e.join(w)) \
+            .select_from(e.outerjoin(w)) \
             .where(e.c.user_id == user_id) \
-            .where(w.c.id == e.c.last_workout_id) \
             .order_by(desc(w.c.date))
         return await db.fetch_all(query)
 
