@@ -2,6 +2,7 @@ from pkg.db import db
 from pkg.db.models.workout import Workout, WorkoutExercise
 from pkg.db.services.exercise_service import ExerciseService
 from sqlalchemy import desc
+from sqlalchemy.sql import Select
 
 
 class WorkoutService:
@@ -41,7 +42,7 @@ class WorkoutService:
     async def view_exercise_history(exercise_id: str):
         we = WorkoutExercise.__table__
         workouts = Workout.__table__
-        query = we.select(we)\
+        query = Select(columns=[*we.c, workouts.c.date.label('workout_date')]) \
             .select_from(we.join(workouts)) \
             .where(we.c.exercise_id == exercise_id) \
             .order_by(desc(workouts.c.date))

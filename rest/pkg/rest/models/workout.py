@@ -21,6 +21,7 @@ class WorkoutExerciseForWorkoutView(WorkoutExerciseBase):
 
 class WorkoutExerciseForListing(WorkoutExerciseBase):
     workout_id: str
+    workout_date: datetime
 
 
 class WorkoutBase(DBEntity):
