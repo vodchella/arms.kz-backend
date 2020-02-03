@@ -19,6 +19,6 @@ class Exercise(Base):
     category_id = Column(String, ForeignKey('exercise_categories.id'))
     name = Column(String)
     both_hands = Column(Boolean)
-    last_workout_date = Column(DateTime(timezone=True))
+    last_workout_id = Column(String, ForeignKey('workouts.id'))
 
     category = relationship('ExerciseCategory')
