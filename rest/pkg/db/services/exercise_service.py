@@ -22,7 +22,6 @@ class ExerciseService:
             .where(e.c.user_id == user_id) \
             .where(w.c.id == e.c.last_workout_id) \
             .order_by(desc(w.c.date))
-        print(query)
         return await db.fetch_all(query)
 
     @staticmethod
