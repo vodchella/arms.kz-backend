@@ -1,7 +1,7 @@
 from pkg.db import db
 from pkg.db.models.exercise import Exercise, ExerciseCategory
 from pkg.db.models.workout import Workout
-from sqlalchemy import desc
+from sqlalchemy import desc, nullslast
 from sqlalchemy.sql import Select
 
 
@@ -20,7 +20,7 @@ class ExerciseService:
         query = Select(columns=[*e.c, w.c.date.label('last_workout_date')]) \
             .select_from(e.outerjoin(w)) \
             .where(e.c.user_id == user_id) \
-            .order_by(desc(w.c.date))
+            .order_by(nullslast(desc(w.c.date)))
         return await db.fetch_all(query)
 
     @staticmethod
