@@ -38,5 +38,4 @@ class UserService:
         query = users.update() \
             .where(users.c.id == user_id) \
             .values(token_key=token_key)
-        print(query)
         await db.execute(query)

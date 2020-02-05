@@ -24,7 +24,10 @@ async def signin_by_google_token(google_token: str = Query(..., alias='token')):
             email = resp_body['email']
             user = await UserService.get_by_email(email)
             if user is not None:
-                return await JwtService.create_token_pair(user['id'])
+                if user['is_active']:
+                    return await JwtService.create_token_pair(user['id'])
+                else:
+                    raise CustomException('Пользователь заблокирован')
             else:
                 raise CustomException('Пользователь не зарегистрирован')
         else:
