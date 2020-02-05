@@ -7,6 +7,7 @@ create table users
 	name text,
 	picture text,
 	locale varchar(10),
+	token_key char(16),
 	is_active boolean default true not null
 );
 

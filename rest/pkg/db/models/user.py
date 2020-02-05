@@ -10,4 +10,5 @@ class User(Base):
     name = Column(String)
     picture = Column(String)
     locale = Column(String)
+    token_key = Column(String)
     is_active = Column(Boolean)
