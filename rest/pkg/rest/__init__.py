@@ -11,7 +11,7 @@ from pkg.utils.logger import DEFAULT_LOGGER
 from pydantic import ValidationError
 from starlette.exceptions import HTTPException
 from starlette.requests import Request
-from starlette.status import HTTP_422_UNPROCESSABLE_ENTITY, HTTP_400_BAD_REQUEST
+from starlette.status import HTTP_400_BAD_REQUEST
 
 app = FastAPI()
 app.include_router(root_router)
@@ -53,7 +53,7 @@ async def http_exceptions_handler(request: Request, exc: ValidationError):
     return response_error(
         ERROR_UNHANDLED_EXCEPTION,
         str(exc),
-        HTTP_422_UNPROCESSABLE_ENTITY,
+        HTTP_400_BAD_REQUEST,
         detail=jsonable_encoder(exc.errors()),
         log_stacktrace=False
     )
@@ -64,7 +64,7 @@ async def http_exceptions_handler(request: Request, exc: RequestValidationError)
     return response_error(
         ERROR_UNHANDLED_EXCEPTION,
         str(exc),
-        HTTP_422_UNPROCESSABLE_ENTITY,
+        HTTP_400_BAD_REQUEST,
         detail=jsonable_encoder(exc.errors()),
         log_stacktrace=False
     )
