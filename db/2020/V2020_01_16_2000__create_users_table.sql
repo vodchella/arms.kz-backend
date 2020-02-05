@@ -3,7 +3,11 @@ create table users
 	id char(16) not null
 		constraint users_pk
 			primary key,
-	email text not null
+	email text not null,
+	name text,
+	picture text,
+	locale varchar(10),
+	is_active boolean default true not null
 );
 
 alter table users owner to postgres;
