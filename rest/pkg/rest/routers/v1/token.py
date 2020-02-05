@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from pkg.db import db
 from pkg.db.services.user_service import UserService
 from pkg.rest.models.user import User
 from pkg.rest.services.jwt_service import JwtService
@@ -38,6 +39,7 @@ async def check(current_user: User = Depends(get_current_user)):
     return current_user
 
 
-@router.get('/refresh')
+@router.post('/refresh')
+@db.transaction()
 async def refresh(current_user: User = Depends(get_current_user_by_refresh_token)):
     return await JwtService.create_token_pair(current_user.id)
