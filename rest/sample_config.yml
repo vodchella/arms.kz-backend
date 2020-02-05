@@ -1,5 +1,7 @@
 app:
   type: dev
+jwt:
+  secret: Gpc8ZlCgJpA0hDAmuE70OAWjUNRbU0Ly2yxRFLne
 postgres:
   host: localhost
   port: 5432
