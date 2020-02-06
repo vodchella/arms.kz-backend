@@ -43,3 +43,11 @@ class ExerciseService:
         await db.execute(query)
         return category_id
 
+    @staticmethod
+    async def update_category(data: ExerciseCategoryDTO):
+        categories = ExerciseCategory.__table__
+        query = categories.update() \
+            .where(categories.c.id == data.id) \
+            .values(name=data.name)
+        await db.execute(query)
+
