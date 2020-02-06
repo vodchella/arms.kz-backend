@@ -10,33 +10,14 @@
 			"item": [
 				{
 					"name": "list-categories",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "secret_token",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "Some body"
-						},
 						"url": {
-							"raw": "http://localhost:8517/api/v1/exercise/list-categories",
-							"protocol": "http",
+							"raw": "{{host}}/api/v1/exercise/list-categories",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8517",
 							"path": [
 								"api",
 								"v1",
@@ -49,33 +30,14 @@
 				},
 				{
 					"name": "list",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "secret_token",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "Some body"
-						},
 						"url": {
-							"raw": "http://localhost:8517/api/v1/exercise/list",
-							"protocol": "http",
+							"raw": "{{host}}/api/v1/exercise/list",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8517",
 							"path": [
 								"api",
 								"v1",
@@ -88,33 +50,14 @@
 				},
 				{
 					"name": "history",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "secret_token",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "Some body"
-						},
 						"url": {
-							"raw": "http://localhost:8517/api/v1/exercise/:id/history",
-							"protocol": "http",
+							"raw": "{{host}}/api/v1/exercise/:id/history",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8517",
 							"path": [
 								"api",
 								"v1",
@@ -140,33 +83,14 @@
 			"item": [
 				{
 					"name": "list",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "secret_token",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "Some body"
-						},
 						"url": {
-							"raw": "http://localhost:8517/api/v1/workout/list",
-							"protocol": "http",
+							"raw": "{{host}}/api/v1/workout/list",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8517",
 							"path": [
 								"api",
 								"v1",
@@ -179,33 +103,14 @@
 				},
 				{
 					"name": "view",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "secret_token",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "Some body"
-						},
 						"url": {
-							"raw": "http://localhost:8517/api/v1/workout/:id/view",
-							"protocol": "http",
+							"raw": "{{host}}/api/v1/workout/:id/view",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8517",
 							"path": [
 								"api",
 								"v1",
@@ -225,6 +130,164 @@
 				}
 			],
 			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "register",
+			"item": [
+				{
+					"name": "by_google_token",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/register/google?token=eyJhbGciOiJSUzI1NiIsImtpZCI6ImQ4ZWZlYTFmNjZlODdiYjM2YzJlYTA5ZDgzNzMzOGJkZDgxMDM1M2IiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI2NjcwNjA3NDk4Mi0xN2xuZGN0NG44bnI0cnFicDlqNzVkYTJzMzJhNTNlMS5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsImF1ZCI6IjY2NzA2MDc0OTgyLTZnaWd0YXFmZnY4M3BhYmFrODlwajBscmg3djhyNmxoLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTExMDY3Nzc2NjIwMTA0NDQ5OTM4IiwiZW1haWwiOiJ0d2lzdGVyLmt6QGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoi0J_QsNCy0LvQvtCyINCc0LDQutGB0LjQvCIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS0vQUF1RTdtQVlBbjBYMHhISERkNmxrQW02RjhORVVqeTB3b0RpOWkwcVZHZXg9czk2LWMiLCJnaXZlbl9uYW1lIjoi0J_QsNCy0LvQvtCyIiwiZmFtaWx5X25hbWUiOiLQnNCw0LrRgdC40LwiLCJsb2NhbGUiOiJydSIsImlhdCI6MTU4MDg5MzE0NiwiZXhwIjoxNTgwODk2NzQ2fQ.C9hc7s1AxshxPdBxLIeU46k6xeAniRT0RytVB27DVZ4i4ToRj_yMmI10FkU1FUcFbrmiATnBJpjuK_5zRH54By6dhyVBN4UevuhJ0t5dqTQwU6nzUmqajPdCSLHebM8mWEeTan5YwkzAZyxJ3e6kLAaMjaDFuGQa0Qqzuxmtf3aUmGME8CKfySuQ9sb_XzmqcfrYGlAGvHV4a7Ci9xtrjF0yXdJtTrOSLyb-k5ZWuOTjkKAnWd2tJ_PtNplC5ybW0uOERXmsPKSqXDSaRkdpM00yMEArYkMEaEf-OQ0Q-b0VYLqOI6ybSrQo5cJ6RKHzyLeU6cVEvlL6h9BWu8M0UQ",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"register",
+								"google"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImQ4ZWZlYTFmNjZlODdiYjM2YzJlYTA5ZDgzNzMzOGJkZDgxMDM1M2IiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI2NjcwNjA3NDk4Mi0xN2xuZGN0NG44bnI0cnFicDlqNzVkYTJzMzJhNTNlMS5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsImF1ZCI6IjY2NzA2MDc0OTgyLTZnaWd0YXFmZnY4M3BhYmFrODlwajBscmg3djhyNmxoLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTExMDY3Nzc2NjIwMTA0NDQ5OTM4IiwiZW1haWwiOiJ0d2lzdGVyLmt6QGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoi0J_QsNCy0LvQvtCyINCc0LDQutGB0LjQvCIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS0vQUF1RTdtQVlBbjBYMHhISERkNmxrQW02RjhORVVqeTB3b0RpOWkwcVZHZXg9czk2LWMiLCJnaXZlbl9uYW1lIjoi0J_QsNCy0LvQvtCyIiwiZmFtaWx5X25hbWUiOiLQnNCw0LrRgdC40LwiLCJsb2NhbGUiOiJydSIsImlhdCI6MTU4MDg5MzE0NiwiZXhwIjoxNTgwODk2NzQ2fQ.C9hc7s1AxshxPdBxLIeU46k6xeAniRT0RytVB27DVZ4i4ToRj_yMmI10FkU1FUcFbrmiATnBJpjuK_5zRH54By6dhyVBN4UevuhJ0t5dqTQwU6nzUmqajPdCSLHebM8mWEeTan5YwkzAZyxJ3e6kLAaMjaDFuGQa0Qqzuxmtf3aUmGME8CKfySuQ9sb_XzmqcfrYGlAGvHV4a7Ci9xtrjF0yXdJtTrOSLyb-k5ZWuOTjkKAnWd2tJ_PtNplC5ybW0uOERXmsPKSqXDSaRkdpM00yMEArYkMEaEf-OQ0Q-b0VYLqOI6ybSrQo5cJ6RKHzyLeU6cVEvlL6h9BWu8M0UQ"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "signin_by_google_token",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/signin/google?token=eyJhbGciOiJSUzI1NiIsImtpZCI6ImQ4ZWZlYTFmNjZlODdiYjM2YzJlYTA5ZDgzNzMzOGJkZDgxMDM1M2IiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI2NjcwNjA3NDk4Mi0xN2xuZGN0NG44bnI0cnFicDlqNzVkYTJzMzJhNTNlMS5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsImF1ZCI6IjY2NzA2MDc0OTgyLTZnaWd0YXFmZnY4M3BhYmFrODlwajBscmg3djhyNmxoLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTExMDY3Nzc2NjIwMTA0NDQ5OTM4IiwiZW1haWwiOiJ0d2lzdGVyLmt6QGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoi0J_QsNCy0LvQvtCyINCc0LDQutGB0LjQvCIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS0vQUF1RTdtQVlBbjBYMHhISERkNmxrQW02RjhORVVqeTB3b0RpOWkwcVZHZXg9czk2LWMiLCJnaXZlbl9uYW1lIjoi0J_QsNCy0LvQvtCyIiwiZmFtaWx5X25hbWUiOiLQnNCw0LrRgdC40LwiLCJsb2NhbGUiOiJydSIsImlhdCI6MTU4MDk2NjcwMSwiZXhwIjoxNTgwOTcwMzAxfQ.O6cSdEBzGsnRGD8oTenBbNBYNrubWv5rW9s-XE0vojkHsyV_XQ5g5gzUlOJHchwukoLoSEqPWOixQJ4jMWJ2zq12rgqACAzW84Stvhxb7nX6Z6DR2OMIukhufLHypfdMUXKrTr4MoDd0PIX7PsD8hwZCis67FAHFndaxr----p78gJkqI9hKrhTAjzg3H6dPd_5ko_USYl-c3qT0UvNygqJRiLUym-9j3FBDVwkVDpNXIVLESryvUEGFh4UYrS2G9NwZbmQR6Mb90-K9VZXZqnelSJ8edJ6pTaqWkoryEs_QmZa5bhAlD7YUexTWOJZja80Ywask3c3VgzngizkbcQ",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"signin",
+								"google"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImQ4ZWZlYTFmNjZlODdiYjM2YzJlYTA5ZDgzNzMzOGJkZDgxMDM1M2IiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI2NjcwNjA3NDk4Mi0xN2xuZGN0NG44bnI0cnFicDlqNzVkYTJzMzJhNTNlMS5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsImF1ZCI6IjY2NzA2MDc0OTgyLTZnaWd0YXFmZnY4M3BhYmFrODlwajBscmg3djhyNmxoLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTExMDY3Nzc2NjIwMTA0NDQ5OTM4IiwiZW1haWwiOiJ0d2lzdGVyLmt6QGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoi0J_QsNCy0LvQvtCyINCc0LDQutGB0LjQvCIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS0vQUF1RTdtQVlBbjBYMHhISERkNmxrQW02RjhORVVqeTB3b0RpOWkwcVZHZXg9czk2LWMiLCJnaXZlbl9uYW1lIjoi0J_QsNCy0LvQvtCyIiwiZmFtaWx5X25hbWUiOiLQnNCw0LrRgdC40LwiLCJsb2NhbGUiOiJydSIsImlhdCI6MTU4MDk2NjcwMSwiZXhwIjoxNTgwOTcwMzAxfQ.O6cSdEBzGsnRGD8oTenBbNBYNrubWv5rW9s-XE0vojkHsyV_XQ5g5gzUlOJHchwukoLoSEqPWOixQJ4jMWJ2zq12rgqACAzW84Stvhxb7nX6Z6DR2OMIukhufLHypfdMUXKrTr4MoDd0PIX7PsD8hwZCis67FAHFndaxr----p78gJkqI9hKrhTAjzg3H6dPd_5ko_USYl-c3qT0UvNygqJRiLUym-9j3FBDVwkVDpNXIVLESryvUEGFh4UYrS2G9NwZbmQR6Mb90-K9VZXZqnelSJ8edJ6pTaqWkoryEs_QmZa5bhAlD7YUexTWOJZja80Ywask3c3VgzngizkbcQ"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "token",
+			"item": [
+				{
+					"name": "check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/token/check",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"token",
+								"check"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refresh",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{refresh_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/token/refresh",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"token",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{auth_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "7d2d229c-c18d-4491-a251-e16b650b0332",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "e7ab4bbf-16bd-4c1e-93e9-fa84d0a065fd",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	],
 	"protocolProfileBehavior": {}
