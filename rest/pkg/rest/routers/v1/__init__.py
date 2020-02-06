@@ -5,9 +5,10 @@ from pkg.utils.logger import DEFAULT_LOGGER
 router = APIRouter()
 
 
-def module_loaded(module_name, module):
-    router.include_router(module.router, prefix=f'/{module_name}')
-    DEFAULT_LOGGER.info(f'... /{module_name} router loaded')
+def module_loaded(module_name: str, module):
+    path = module_name.replace('_', '-')
+    router.include_router(module.router, prefix=f'/{path}')
+    DEFAULT_LOGGER.info(f'... /{path} router loaded')
 
 
 dynamic_import('./pkg/rest/routers/v1',

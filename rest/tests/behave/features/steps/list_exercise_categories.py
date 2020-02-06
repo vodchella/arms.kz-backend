@@ -6,5 +6,5 @@ from tests.behave.utils.constants import SERVER_API_V1_PATH
 
 @given('I try to get exercise categories right')
 def step_impl(context: Context):
-    url = f'{SERVER_API_V1_PATH}/exercise/list-categories'
+    url = f'{SERVER_API_V1_PATH}/exercise-category/list'
     context.response = authorized_behave_request('GET', url)
