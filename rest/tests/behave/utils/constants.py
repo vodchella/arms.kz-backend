@@ -1,0 +1,2 @@
+SERVER_API_PATH = 'http://localhost:8517/api'
+SERVER_API_V1_PATH = f'{SERVER_API_PATH}/v1'
