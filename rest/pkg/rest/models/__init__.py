@@ -1,8 +1,9 @@
 from pydantic import BaseModel
+from typing import Optional
 
 
 class DBEntity(BaseModel):
-    id: str
+    id: Optional[str]
 
 
 class NamedEntity(DBEntity):
