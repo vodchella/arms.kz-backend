@@ -98,6 +98,49 @@
 					"response": []
 				},
 				{
+					"name": "update",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"New category renamed\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/v1/exercise-category/:id/update",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"exercise-category",
+								":id",
+								"update"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "PZWV4kdSQySVAtSs"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "list",
 					"request": {
 						"method": "GET",
