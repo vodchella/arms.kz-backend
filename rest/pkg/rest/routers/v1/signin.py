@@ -1,14 +1,14 @@
 import json
-from fastapi import APIRouter, Query
+from fastapi import APIRouter, Query, HTTPException
 from httpx import AsyncClient
+from pkg.config import CONFIG
 from pkg.constants.urls import URL_GOOGLE_TOKEN_INFO
 from pkg.db import db
 from pkg.db.services.user_service import UserService
 from pkg.rest.models.token_pair import TokenPair
 from pkg.rest.services.jwt_service import JwtService
 from pkg.utils.errors import CustomException
-from starlette.status import HTTP_200_OK
-
+from starlette.status import HTTP_200_OK, HTTP_404_NOT_FOUND
 
 router = APIRouter()
 
@@ -32,3 +32,12 @@ async def signin_by_google_token(google_token: str = Query(..., alias='token')):
                 raise CustomException('Пользователь не зарегистрирован')
         else:
             raise CustomException('Неверный токен Google')
+
+
+@router.post('/developer', response_model=TokenPair)
+@db.transaction()
+async def signin_developer():
+    if CONFIG['app']['type'] == 'dev':
+        return await JwtService.create_token_pair('TWRvTJ4GkUTP6dGr')
+    else:
+        raise HTTPException(HTTP_404_NOT_FOUND, 'Not Found')
