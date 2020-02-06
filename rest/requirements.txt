@@ -38,6 +38,7 @@ PyYAML==5.3
 requests==2.22.0
 rfc3986==1.3.2
 Rx==1.6.1
+sh==1.12.14
 six==1.13.0
 sniffio==1.1.0
 SQLAlchemy==1.3.12
