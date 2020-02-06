@@ -8,11 +8,11 @@ router = APIRouter()
 
 
 @router.get('/check')
-async def check(current_user: User = Depends(CurrentUser.get)):
-    return current_user
+async def check(user: User = Depends(CurrentUser.get)):
+    return user
 
 
 @router.post('/refresh')
 @db.transaction()
-async def refresh(current_user: User = Depends(CurrentUser.get_by_refresh_token)):
-    return await JwtService.create_token_pair(current_user.id)
+async def refresh(user: User = Depends(CurrentUser.get_by_refresh_token)):
+    return await JwtService.create_token_pair(user.id)
