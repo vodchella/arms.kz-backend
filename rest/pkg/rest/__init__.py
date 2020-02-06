@@ -33,8 +33,7 @@ async def shutdown():
 async def unhandled_exceptions_handler(request: Request, exc: Exception):
     return response_error(
         ERROR_UNHANDLED_EXCEPTION,
-        str(exc),
-        log_error=False
+        str(exc)
     )
 
 
@@ -75,6 +74,5 @@ async def http_exceptions_handler(request: Request, exc: CustomException):
     return response_error(
         ERROR_CUSTOM_EXCEPTION,
         str(exc.detail),
-        HTTP_400_BAD_REQUEST,
-        log_error=False
+        HTTP_400_BAD_REQUEST
     )
