@@ -31,14 +31,10 @@ IGNORED_HTTP_CODES = [HTTP_404_NOT_FOUND, HTTP_401_UNAUTHORIZED, ]
 def response_error(code: int,
                    message: str = None,
                    status_code: int = HTTP_500_INTERNAL_SERVER_ERROR,
-                   detail: List[Dict] = None,
                    log_stacktrace: bool = True):
 
     msg = message if message else ERROR_TEXT_MAP[code]
     error_json = {'error': {'code': code, 'message': msg}}
-
-    if detail:
-        error_json['error']['detail'] = detail
 
     if status_code not in IGNORED_HTTP_CODES:
         if log_stacktrace:

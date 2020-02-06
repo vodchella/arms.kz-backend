@@ -53,7 +53,6 @@ async def http_exceptions_handler(request: Request, exc: ValidationError):
         ERROR_UNHANDLED_EXCEPTION,
         str(exc),
         HTTP_400_BAD_REQUEST,
-        detail=jsonable_encoder(exc.errors()),
         log_stacktrace=False
     )
 
@@ -64,7 +63,6 @@ async def http_exceptions_handler(request: Request, exc: RequestValidationError)
         ERROR_UNHANDLED_EXCEPTION,
         str(exc),
         HTTP_400_BAD_REQUEST,
-        detail=jsonable_encoder(exc.errors()),
         log_stacktrace=False
     )
 
