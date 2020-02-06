@@ -1,5 +1,6 @@
 from pkg.db import db
 from pkg.db.models.user import User
+from pkg.rest.models.user import User as UserDTO
 from pkg.utils.db import generate_unique_id
 
 
@@ -21,14 +22,14 @@ class UserService:
         return dict(result) if result is not None else None
 
     @staticmethod
-    async def create(email: str, name: str = None, picture: str = None, locale: str = None):
+    async def create(user: UserDTO):
         users = User.__table__
         user_id = generate_unique_id()
         query = users.insert().values(id=user_id,
-                                      email=email,
-                                      name=name,
-                                      picture=picture,
-                                      locale=locale)
+                                      email=user.email,
+                                      name=user.name,
+                                      picture=user.picture,
+                                      locale=user.locale)
         await db.execute(query)
         return user_id
 
