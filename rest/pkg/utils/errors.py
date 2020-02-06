@@ -5,7 +5,6 @@ from pkg.constants.error_codes import ERROR_CUSTOM_EXCEPTION, ERROR_TEXT_MAP
 from pkg.constants.logging import REST_LOGGER_NAME
 from starlette.responses import JSONResponse
 from starlette.status import HTTP_404_NOT_FOUND, HTTP_500_INTERNAL_SERVER_ERROR, HTTP_401_UNAUTHORIZED
-from typing import Dict, List
 
 
 class CustomException(Exception):
