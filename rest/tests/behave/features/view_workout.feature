@@ -7,3 +7,7 @@ Feature: View workout
   Scenario: Specify invalid ID
       Given I try to specify invalid workout ID
        Then I will get "400" http error with "-32001" application error
+
+  Scenario: Specify nonexistent ID
+      Given I try to specify nonexistent workout ID
+       Then I will get "400" http error with "-32002" application error

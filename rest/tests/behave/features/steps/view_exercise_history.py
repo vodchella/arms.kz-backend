@@ -13,3 +13,9 @@ def step_impl(context: Context):
 def step_impl(context: Context):
     url = 'http://localhost:8517/api/v1/exercise/some-invalid-id/history'
     context.response = authorized_behave_request('GET', url)
+
+
+@given('I try to specify nonexistent exercise ID')
+def step_impl(context: Context):
+    url = 'http://localhost:8517/api/v1/exercise/nonexistent_id/history'
+    context.response = authorized_behave_request('GET', url)
