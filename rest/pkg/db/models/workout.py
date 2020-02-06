@@ -1,5 +1,5 @@
 from pkg.db import Base
-from sqlalchemy import Column, ForeignKey, String, DateTime, SmallInteger, Numeric, Integer
+from sqlalchemy import Column, ForeignKey, String, DateTime, SmallInteger, Numeric, Integer, Boolean
 
 
 class Workout(Base):
@@ -9,6 +9,7 @@ class Workout(Base):
     user_id = Column(String, ForeignKey('users.id'))
     date = Column(DateTime(timezone=True))
     comment = Column(String)
+    is_deleted = Column(Boolean)
 
 
 class WorkoutExercise(Base):

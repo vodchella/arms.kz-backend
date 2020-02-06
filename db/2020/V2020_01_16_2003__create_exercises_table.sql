@@ -15,12 +15,13 @@ create table exercises
 	last_workout_id char(16)
 		constraint exercises_workouts_id_fk
 			references workouts
-				on delete set null
+				on delete set null,
+	is_deleted boolean default false not null
 );
 
 alter table exercises owner to postgres;
 
-create unique index exercises_user_id_name_uindex
-	on exercises (user_id, name);
+create unique index exercises_user_id_name_is_deleted_uindex
+	on exercises (user_id, name, is_deleted);
 
 

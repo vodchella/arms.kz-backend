@@ -8,7 +8,8 @@ create table workouts
 			references users
 				on delete cascade,
 	date timestamp with time zone not null,
-	comment text
+	comment text,
+	is_deleted boolean default false not null
 );
 
 alter table workouts owner to postgres;
