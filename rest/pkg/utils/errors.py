@@ -32,7 +32,6 @@ def response_error(code: int,
                    message: str = None,
                    status_code: int = HTTP_500_INTERNAL_SERVER_ERROR,
                    detail: List[Dict] = None,
-                   default_logger: str = REST_LOGGER_NAME,
                    log_stacktrace: bool = True,
                    log_error: bool = True):
 
@@ -52,7 +51,7 @@ def response_error(code: int,
         if log_error:
             log = f'Status {status_code}, JSON: {error_json}{log}\n'
 
-        logger = logging.getLogger(default_logger)
+        logger = logging.getLogger(REST_LOGGER_NAME)
         logger.error(log)
 
     return JSONResponse(content=error_json, status_code=status_code)
