@@ -38,15 +38,14 @@ class ExerciseService:
         return dict(result) if result is not None else None
 
     @staticmethod
-    async def is_main_category(category_id: str):
+    async def find_main_category(user_id: str):
         categories = ExerciseCategory.__table__
-        query = Select(columns=[func.count().label('cnt')]) \
-            .select_from(categories) \
+        query = categories.select() \
+            .where(categories.c.user_id == user_id) \
             .where(categories.c.is_deleted == false()) \
-            .where(categories.c.is_main == true()) \
-            .where(categories.c.id == category_id)
-        row = await db.fetch_one(query)
-        return dict(row)['cnt'] != 0 if row is not None else False
+            .where(categories.c.is_main == true())
+        result = await db.fetch_one(query)
+        return dict(result) if result is not None else None
 
     @staticmethod
     async def list_categories(user_id: str):
