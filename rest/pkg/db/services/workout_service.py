@@ -13,24 +13,15 @@ class WorkoutService:
         query = workouts.select() \
             .where(workouts.c.is_deleted == false()) \
             .where(workouts.c.id == workout_id)
-        workout = await db.fetch_one(query)
-        if workout:
-            workout_dict = dict(workout)
+        result = await db.fetch_one(query)
+        return dict(result) if result is not None else None
 
-            workout_exercises = WorkoutExercise.__table__
-            query = workout_exercises.select()\
-                .where(workout_exercises.c.workout_id == workout_id)
-            exercises_list = await db.fetch_all(query)
-
-            exercises_array = []
-            for ex in exercises_list:
-                exercise = await ExerciseService.get(ex['exercise_id'])
-                exercise_dict = dict(ex)
-                exercise_dict['exercise'] = exercise
-                exercises_array.append(exercise_dict)
-
-            workout_dict['exercises'] = exercises_array
-            return workout_dict
+    @staticmethod
+    async def get_exercises(workout_id):
+        workout_exercises = WorkoutExercise.__table__
+        query = workout_exercises.select()\
+            .where(workout_exercises.c.workout_id == workout_id)
+        return await db.fetch_all(query)
 
     @staticmethod
     async def list(user_id: str):

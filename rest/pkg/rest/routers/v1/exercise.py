@@ -6,7 +6,7 @@ from pkg.db.services.exercise_service import ExerciseService
 from pkg.db.services.workout_service import WorkoutService
 from pkg.rest.dependencies.current_user import CurrentUser
 from pkg.rest.models.exercise import ExerciseForListing
-from pkg.rest.models.workout import WorkoutExerciseForListing
+from pkg.rest.models.workout import WorkoutExercise
 from pkg.rest.models.user import User
 from typing import List
 
@@ -19,7 +19,7 @@ async def list_exercises(user: User = Depends(CurrentUser.get)):
     return await ExerciseService.list(user.id)
 
 
-@router.get('/{exercise_id}/history', response_model=List[WorkoutExerciseForListing])
+@router.get('/{exercise_id}/history', response_model=List[WorkoutExercise])
 async def view_exercise_history(exercise_id: str = Path(..., regex=REGEXP_ID),
                                 user: User = Depends(CurrentUser.get)):
     await CommonService.check_entity_belongs_to_user(Exercise.__table__, exercise_id, user.id)

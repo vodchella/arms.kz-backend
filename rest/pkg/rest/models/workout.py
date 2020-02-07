@@ -1,11 +1,10 @@
 from datetime import datetime
 from pkg.rest.models import DBEntity
-from pkg.rest.models.exercise import Exercise
 from pydantic import BaseModel
 from typing import List, Optional
 
 
-class WorkoutExerciseBase(BaseModel):
+class WorkoutExercise(BaseModel):
     approaches: Optional[int]
     lh_weight: Optional[float]
     lh_value: Optional[int]
@@ -15,19 +14,16 @@ class WorkoutExerciseBase(BaseModel):
     bh_value: Optional[int]
 
 
-class WorkoutExerciseForWorkoutView(WorkoutExerciseBase):
-    exercise: Exercise
+class WorkoutExerciseFull(WorkoutExercise):
+    exercise_id: str
+    exercise_name: Optional[str]
 
 
-class WorkoutExerciseForListing(WorkoutExerciseBase):
-    workout_id: str
-    workout_date: datetime
-
-
-class WorkoutBase(DBEntity):
+class Workout(DBEntity):
     date: datetime
     comment: Optional[str]
 
 
-class Workout(WorkoutBase):
-    exercises: List[WorkoutExerciseForWorkoutView]
+class WorkoutFull(BaseModel):
+    workout: Workout
+    exercises: List[WorkoutExerciseFull]
