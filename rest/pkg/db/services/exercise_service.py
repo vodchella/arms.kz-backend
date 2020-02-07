@@ -13,6 +13,7 @@ class ExerciseService:
     async def view(exercise_id: str):
         exercises = Exercise.__table__
         query = exercises.select() \
+            .where(exercises.c.is_deleted == false()) \
             .where(exercises.c.id == exercise_id)
         return await db.fetch_one(query)
 
@@ -23,6 +24,7 @@ class ExerciseService:
         query = Select(columns=[*e.c, w.c.date.label('last_workout_date')]) \
             .select_from(e.outerjoin(w)) \
             .where(e.c.user_id == user_id) \
+            .where(e.c.is_deleted == false()) \
             .order_by(nullslast(desc(w.c.date)))
         return await db.fetch_all(query)
 
