@@ -34,4 +34,4 @@ async def update_category(category_id: str = Path(..., regex=REGEXP_ID),
     await CommonService.check_entity_belongs_to_user(ExerciseCategory.__table__, category_id, user.id)
     data.id = category_id
     await ExerciseService.update_category(data)
-    return data
+    return await ExerciseService.view_category(category_id)
