@@ -33,14 +33,3 @@ class WorkoutService:
             .where(workouts.c.user_id == user_id) \
             .order_by(desc(workouts.c.date))
         return await db.fetch_all(query)
-
-    @staticmethod
-    async def view_exercise_history(exercise_id: str):
-        we = WorkoutExercise.__table__
-        workouts = Workout.__table__
-        query = Select(columns=[*we.c, workouts.c.date.label('workout_date')]) \
-            .select_from(we.join(workouts)) \
-            .where(workouts.c.is_deleted == false()) \
-            .where(we.c.exercise_id == exercise_id) \
-            .order_by(desc(workouts.c.date))
-        return await db.fetch_all(query)
