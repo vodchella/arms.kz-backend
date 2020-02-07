@@ -3,7 +3,7 @@ from pkg.db.models.exercise import Exercise, ExerciseCategory
 from pkg.db.models.workout import Workout
 from pkg.rest.models.exercise import ExerciseCategory as ExerciseCategoryDTO
 from pkg.utils.db import generate_unique_id
-from sqlalchemy import desc, nullslast, func
+from sqlalchemy import desc, nullslast
 from sqlalchemy.sql import Select
 from sqlalchemy.sql.expression import false, true
 
@@ -27,6 +27,14 @@ class ExerciseService:
             .where(e.c.is_deleted == false()) \
             .order_by(nullslast(desc(w.c.date)))
         return await db.fetch_all(query)
+
+    @staticmethod
+    async def move_exercises(from_category_id: str, to_category_id: str):
+        exercises = Exercise.__table__
+        query = exercises.update() \
+            .where(exercises.c.category_id == from_category_id) \
+            .values(category_id=to_category_id)
+        await db.execute(query)
 
     @staticmethod
     async def view_category(category_id: str):
@@ -76,3 +84,11 @@ class ExerciseService:
             .values(name=data.name)
         await db.execute(query)
 
+    @staticmethod
+    async def delete_category(category_id: str):
+        categories = ExerciseCategory.__table__
+        query = categories.update() \
+            .where(categories.c.id == category_id) \
+            .where(categories.c.is_main == false()) \
+            .values(is_deleted=True)
+        await db.execute(query)

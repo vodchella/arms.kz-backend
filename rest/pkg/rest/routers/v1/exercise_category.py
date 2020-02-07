@@ -7,6 +7,7 @@ from pkg.db.services.exercise_service import ExerciseService
 from pkg.rest.dependencies.current_user import CurrentUser
 from pkg.rest.models.exercise import ExerciseCategory as ExerciseCategoryDTO
 from pkg.rest.models.user import User
+from pkg.utils.errors import CustomException
 from typing import List
 
 
@@ -35,3 +36,17 @@ async def update_category(category_id: str = Path(..., regex=REGEXP_ID),
     data.id = category_id
     await ExerciseService.update_category(data)
     return await ExerciseService.view_category(category_id)
+
+
+@router.delete('/{category_id}/delete')
+@db.transaction()
+async def delete_category(category_id: str = Path(..., regex=REGEXP_ID),
+                          user: User = Depends(CurrentUser.get)):
+    await CommonService.check_entity_belongs_to_user(ExerciseCategory.__table__, category_id, user.id)
+    category = ExerciseCategoryDTO(** await ExerciseService.find_main_category(user.id))
+    if category.id != category_id:
+        await ExerciseService.move_exercises(category_id, category.id)
+        await ExerciseService.delete_category(category_id)
+        return True
+    else:
+        raise CustomException('Нельзя удалить основную категорию')
