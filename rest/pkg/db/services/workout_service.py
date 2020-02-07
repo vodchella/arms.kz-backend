@@ -1,6 +1,6 @@
 from pkg.db import db
+from pkg.db.models.exercise import Exercise
 from pkg.db.models.workout import Workout, WorkoutExercise
-from pkg.db.services.exercise_service import ExerciseService
 from sqlalchemy import desc
 from sqlalchemy.sql import Select
 from sqlalchemy.sql.expression import false
@@ -18,9 +18,11 @@ class WorkoutService:
 
     @staticmethod
     async def get_exercises(workout_id):
-        workout_exercises = WorkoutExercise.__table__
-        query = workout_exercises.select()\
-            .where(workout_exercises.c.workout_id == workout_id)
+        w = WorkoutExercise.__table__
+        e = Exercise.__table__
+        query = Select(columns=[*w.c, e.c.name.label('exercise_name')]) \
+            .select_from(w.join(e)) \
+            .where(w.c.workout_id == workout_id)
         return await db.fetch_all(query)
 
     @staticmethod
