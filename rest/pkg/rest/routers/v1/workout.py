@@ -15,7 +15,7 @@ router = APIRouter()
 async def view(workout_id: str = Path(..., regex=REGEXP_ID),
                user: User = Depends(CurrentUser.get)):
     await CommonService.check_entity_belongs_to_user(Workout.__table__, workout_id, user.id)
-    return await WorkoutService.view(workout_id)
+    return await WorkoutService.get(workout_id)
 
 
 @router.get('/list', response_model=List[WorkoutBase])

@@ -8,7 +8,7 @@ from sqlalchemy.sql.expression import false
 
 class ExerciseService:
     @staticmethod
-    async def view(exercise_id: str):
+    async def get(exercise_id: str):
         exercises = Exercise.__table__
         query = exercises.select() \
             .where(exercises.c.is_deleted == false()) \

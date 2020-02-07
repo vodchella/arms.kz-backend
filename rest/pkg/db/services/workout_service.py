@@ -8,7 +8,7 @@ from sqlalchemy.sql.expression import false
 
 class WorkoutService:
     @staticmethod
-    async def view(workout_id: str):
+    async def get(workout_id: str):
         workouts = Workout.__table__
         query = workouts.select() \
             .where(workouts.c.is_deleted == false()) \
@@ -24,7 +24,7 @@ class WorkoutService:
 
             exercises_array = []
             for ex in exercises_list:
-                exercise = await ExerciseService.view(ex['exercise_id'])
+                exercise = await ExerciseService.get(ex['exercise_id'])
                 exercise_dict = dict(ex)
                 exercise_dict['exercise'] = exercise
                 exercises_array.append(exercise_dict)

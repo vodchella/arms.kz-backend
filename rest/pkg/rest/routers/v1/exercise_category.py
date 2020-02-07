@@ -36,7 +36,7 @@ async def update_category(category_id: str = Path(..., regex=REGEXP_ID),
     await CommonService.check_entity_belongs_to_user(ExerciseCategory.__table__, category_id, user.id)
     data.id = category_id
     await ExerciseCategoryService.update(data)
-    return await ExerciseCategoryService.view(category_id)
+    return await ExerciseCategoryService.get(category_id)
 
 
 @router.delete('/{category_id}/delete')

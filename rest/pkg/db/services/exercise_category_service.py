@@ -7,7 +7,7 @@ from sqlalchemy.sql.expression import false, true
 
 class ExerciseCategoryService:
     @staticmethod
-    async def view(category_id: str):
+    async def get(category_id: str):
         categories = ExerciseCategory.__table__
         query = categories.select() \
             .where(categories.c.is_deleted == false()) \
