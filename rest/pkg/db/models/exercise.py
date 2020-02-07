@@ -9,6 +9,7 @@ class ExerciseCategory(Base):
     id = Column(String, primary_key=True)
     user_id = Column(String, ForeignKey('users.id'))
     name = Column(String)
+    is_main = Column(Boolean)
     is_deleted = Column(Boolean)
 
 

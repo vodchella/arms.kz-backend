@@ -8,6 +8,7 @@ create table exercise_categories
 			references users
 				on delete cascade,
 	name text not null,
+	is_main boolean default false not null,
 	is_deleted boolean default false not null
 );
 

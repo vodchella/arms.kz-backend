@@ -1,6 +1,7 @@
 INSERT INTO public.users (id, email, name, picture, locale, is_active) VALUES ('TWRvTJ4GkUTP6dGr', 'twister.kz@gmail.com', 'Павлов Максим', 'https://lh3.googleusercontent.com/a-/AAuE7mAYAn0X0xHHDd6lkAm6F8NEUjy0woDi9i0qVGex=s96-c', 'ru', true);
 
 
+INSERT INTO public.exercise_categories (id, user_id, name, is_main) VALUES ('Va4dgopNIJHLrehW', 'TWRvTJ4GkUTP6dGr', 'Не задана', true);
 INSERT INTO public.exercise_categories (id, user_id, name) VALUES ('9SbV89xpAYmneGQw', 'TWRvTJ4GkUTP6dGr', 'Боковое движение');
 INSERT INTO public.exercise_categories (id, user_id, name) VALUES ('zg8nYLJaNhdmSOeG', 'TWRvTJ4GkUTP6dGr', 'Бицепс');
 INSERT INTO public.exercise_categories (id, user_id, name) VALUES ('YtmJgP5R4q4o7wBA', 'TWRvTJ4GkUTP6dGr', 'Пронация');
