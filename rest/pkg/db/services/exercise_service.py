@@ -3,9 +3,9 @@ from pkg.db.models.exercise import Exercise, ExerciseCategory
 from pkg.db.models.workout import Workout
 from pkg.rest.models.exercise import ExerciseCategory as ExerciseCategoryDTO
 from pkg.utils.db import generate_unique_id
-from sqlalchemy import desc, nullslast
+from sqlalchemy import desc, nullslast, func
 from sqlalchemy.sql import Select
-from sqlalchemy.sql.expression import false
+from sqlalchemy.sql.expression import false, true
 
 
 class ExerciseService:
@@ -36,6 +36,17 @@ class ExerciseService:
             .where(categories.c.id == category_id)
         result = await db.fetch_one(query)
         return dict(result) if result is not None else None
+
+    @staticmethod
+    async def is_main_category(category_id: str):
+        categories = ExerciseCategory.__table__
+        query = Select(columns=[func.count().label('cnt')]) \
+            .select_from(categories) \
+            .where(categories.c.is_deleted == false()) \
+            .where(categories.c.is_main == true()) \
+            .where(categories.c.id == category_id)
+        row = await db.fetch_one(query)
+        return dict(row)['cnt'] != 0 if row is not None else False
 
     @staticmethod
     async def list_categories(user_id: str):
