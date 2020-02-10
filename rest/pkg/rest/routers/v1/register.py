@@ -3,7 +3,9 @@ from fastapi import APIRouter, Query
 from httpx import AsyncClient
 from pkg.constants.urls import URL_GOOGLE_TOKEN_INFO
 from pkg.db import db
+from pkg.db.services.exercise_category_service import ExerciseCategoryService
 from pkg.db.services.user_service import UserService
+from pkg.rest.models.exercise import ExerciseCategory
 from pkg.rest.models.token_pair import TokenPair
 from pkg.rest.models.user import User
 from pkg.rest.services.jwt_service import JwtService
@@ -12,6 +14,11 @@ from starlette.status import HTTP_200_OK
 
 
 router = APIRouter()
+
+
+async def create_default_category(user_id: str):
+    default_category = ExerciseCategory(name='Не задана')
+    await ExerciseCategoryService.create(default_category, user_id, is_main=True)
 
 
 @router.post('/google', response_model=TokenPair)
@@ -26,6 +33,7 @@ async def register_by_google_token(google_token: str = Query(..., alias='token')
             user = await UserService.get_by_email(user_data.email)
             if user is None:
                 user_id = await UserService.create(user_data)
+                await create_default_category(user_id)
                 return await JwtService.create_token_pair(user_id)
             else:
                 raise CustomException('Пользователь уже зарегистрирован')

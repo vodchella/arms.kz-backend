@@ -35,11 +35,12 @@ class ExerciseCategoryService:
         return await db.fetch_all(query)
 
     @staticmethod
-    async def create(data: ExerciseCategoryDTO, user_id: str):
+    async def create(data: ExerciseCategoryDTO, user_id: str, is_main: bool = False):
         categories = ExerciseCategory.__table__
         category_id = generate_unique_id()
         query = categories.insert().values(id=category_id,
                                            user_id=user_id,
+                                           is_main=is_main,
                                            name=data.name)
         await db.execute(query)
         return category_id
