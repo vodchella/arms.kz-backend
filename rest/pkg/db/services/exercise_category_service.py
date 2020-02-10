@@ -46,6 +46,11 @@ class ExerciseCategoryService:
         return category_id
 
     @staticmethod
+    async def create_default_category(user_id: str):
+        default_category = ExerciseCategory(name='Не задана')
+        await ExerciseCategoryService.create(default_category, user_id, is_main=True)
+
+    @staticmethod
     async def update(data: ExerciseCategoryDTO):
         categories = ExerciseCategory.__table__
         query = categories.update() \
