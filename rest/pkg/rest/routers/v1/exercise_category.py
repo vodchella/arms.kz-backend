@@ -24,8 +24,8 @@ async def list_categories(user: User = Depends(CurrentUser.get)):
 @db.transaction()
 async def create_category(data: ExerciseCategoryDTO = Body(...),
                           user: User = Depends(CurrentUser.get)):
-    data.id = await ExerciseCategoryService.create(data, user.id)
-    return data
+    category_id = await ExerciseCategoryService.create(data, user.id)
+    return await ExerciseCategoryService.get(category_id)
 
 
 @router.post('/{category_id}/update', response_model=ExerciseCategoryDTO)
@@ -34,8 +34,7 @@ async def update_category(category_id: str = Path(..., regex=REGEXP_ID),
                           data: ExerciseCategoryDTO = Body(...),
                           user: User = Depends(CurrentUser.get)):
     await CommonService.check_entity_belongs_to_user(ExerciseCategory.__table__, category_id, user.id)
-    data.id = category_id
-    await ExerciseCategoryService.update(data)
+    await ExerciseCategoryService.update(category_id, data)
     return await ExerciseCategoryService.get(category_id)
 
 

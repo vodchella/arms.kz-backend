@@ -51,10 +51,10 @@ class ExerciseCategoryService:
         await ExerciseCategoryService.create(default_category, user_id, is_main=True)
 
     @staticmethod
-    async def update(data: ExerciseCategoryDTO):
+    async def update(category_id: str, data: ExerciseCategoryDTO):
         categories = ExerciseCategory.__table__
         query = categories.update() \
-            .where(categories.c.id == data.id) \
+            .where(categories.c.id == category_id) \
             .where(categories.c.is_main == false()) \
             .where(categories.c.is_deleted == false()) \
             .values(name=data.name)
