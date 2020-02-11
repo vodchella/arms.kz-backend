@@ -14,6 +14,13 @@ from typing import List
 router = APIRouter()
 
 
+@router.get('/{exercise_id}/view', response_model=ExerciseDTO)
+async def view(exercise_id: str = Path(..., regex=REGEXP_ID),
+               user: UserDTO = Depends(CurrentUser.get)):
+    await CommonService.check_entity_belongs_to_user(Exercise.__table__, exercise_id, user.id)
+    return await ExerciseService.get(exercise_id)
+
+
 @router.get('/list', response_model=List[ExerciseForListingDTO])
 async def list_exercises(user: UserDTO = Depends(CurrentUser.get)):
     return await ExerciseService.list(user.id)

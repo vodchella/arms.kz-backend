@@ -131,6 +131,33 @@
 					"response": []
 				},
 				{
+					"name": "view",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/exercise/:id/view",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"exercise",
+								":id",
+								"view"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "3j7VPlHrsw5vf9YR"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "list",
 					"request": {
 						"method": "GET",
