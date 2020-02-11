@@ -3,14 +3,14 @@ from pkg.rest.models import NamedEntity
 from typing import Optional
 
 
-class ExerciseCategory(NamedEntity):
+class ExerciseCategoryDTO(NamedEntity):
     pass
 
 
-class Exercise(NamedEntity):
+class ExerciseDTO(NamedEntity):
     category_id: str
     both_hands: bool
 
 
-class ExerciseForListing(Exercise):
+class ExerciseForListingDTO(ExerciseDTO):
     last_workout_date: Optional[datetime]

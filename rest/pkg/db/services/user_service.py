@@ -1,6 +1,6 @@
 from pkg.db import db
 from pkg.db.models.user import User
-from pkg.rest.models.user import User as UserDTO
+from pkg.rest.models.user import UserDTO
 from pkg.utils.db import generate_unique_id
 
 

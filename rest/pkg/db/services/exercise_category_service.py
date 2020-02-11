@@ -1,6 +1,6 @@
 from pkg.db import db
 from pkg.db.models.exercise import ExerciseCategory
-from pkg.rest.models.exercise import ExerciseCategory as ExerciseCategoryDTO
+from pkg.rest.models.exercise import ExerciseCategoryDTO
 from pkg.utils.db import generate_unique_id
 from sqlalchemy.sql.expression import false, true
 

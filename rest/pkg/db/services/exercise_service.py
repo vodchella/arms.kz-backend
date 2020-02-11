@@ -1,7 +1,7 @@
 from pkg.db import db
 from pkg.db.models.exercise import Exercise
 from pkg.db.models.workout import Workout, WorkoutExercise
-from pkg.rest.models.exercise import Exercise as ExerciseDTO
+from pkg.rest.models.exercise import ExerciseDTO
 from pkg.utils.db import generate_unique_id
 from sqlalchemy import desc, nullslast
 from sqlalchemy.sql import Select

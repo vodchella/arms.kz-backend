@@ -4,7 +4,7 @@ from pydantic import BaseModel
 from typing import List, Optional
 
 
-class WorkoutExercise(BaseModel):
+class WorkoutExerciseDTO(BaseModel):
     approaches: Optional[int]
     lh_weight: Optional[float]
     lh_value: Optional[int]
@@ -14,16 +14,16 @@ class WorkoutExercise(BaseModel):
     bh_value: Optional[int]
 
 
-class WorkoutExerciseFull(WorkoutExercise):
+class WorkoutExerciseFullDTO(WorkoutExerciseDTO):
     exercise_id: str
     exercise_name: Optional[str]
 
 
-class Workout(DBEntity):
+class WorkoutDTO(DBEntity):
     date: datetime
     comment: Optional[str]
 
 
-class WorkoutFull(BaseModel):
-    workout: Workout
-    exercises: List[WorkoutExerciseFull]
+class WorkoutFullDTO(BaseModel):
+    workout: WorkoutDTO
+    exercises: List[WorkoutExerciseFullDTO]

@@ -2,7 +2,7 @@ import jwt
 from datetime import datetime, timedelta
 from pkg.config import CONFIG
 from pkg.db.services.user_service import UserService
-from pkg.rest.models.token_pair import TokenPair
+from pkg.rest.models.token_pair import TokenPairDTO
 from pkg.rest.models.token_payload import TokenPayload
 from pkg.utils.db import generate_unique_id
 from typing import Union
@@ -27,12 +27,12 @@ def _create_token(user_id: str, token_key: str, token_type: str):
 
 class JwtService:
     @staticmethod
-    async def create_token_pair(user_id: str) -> TokenPair:
+    async def create_token_pair(user_id: str) -> TokenPairDTO:
         token_key = generate_unique_id()
         await UserService.set_token_key(user_id, token_key)
         auth = _create_token(user_id, token_key, 'a')
         refresh = _create_token(user_id, token_key, 'r')
-        return TokenPair(auth=auth, refresh=refresh)
+        return TokenPairDTO(auth=auth, refresh=refresh)
 
     @staticmethod
     def validate_token(token: str, expected_type: str) -> Union[TokenPayload, bool]:
