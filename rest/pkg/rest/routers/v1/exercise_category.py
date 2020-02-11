@@ -44,7 +44,7 @@ async def update_category(category_id: str = Path(..., regex=REGEXP_ID),
 async def delete_category(category_id: str = Path(..., regex=REGEXP_ID),
                           user: User = Depends(CurrentUser.get)):
     await CommonService.check_entity_belongs_to_user(ExerciseCategory.__table__, category_id, user.id)
-    category = ExerciseCategoryDTO(** await ExerciseService.find_main_category(user.id))
+    category = ExerciseCategoryDTO(** await ExerciseCategoryService.find_main(user.id))
     if category.id != category_id:
         await ExerciseService.move_exercises(category_id, category.id)
         await ExerciseCategoryService.delete(category_id)
