@@ -426,7 +426,15 @@
 				"id": "7d2d229c-c18d-4491-a251-e16b650b0332",
 				"type": "text/javascript",
 				"exec": [
-					""
+					"const postRequest = {",
+					"    url: pm.environment.get(\"host\") + \"/api/v1/signin/developer\",",
+					"    method: \"POST\"",
+					"}",
+					"pm.sendRequest(postRequest, function (err, response) {",
+					"    resp = response.json()",
+					"    pm.environment.set(\"auth_token\", resp[\"auth\"]);",
+					"    pm.environment.set(\"refresh_token\", resp[\"refresh\"]);",
+					"});"
 				]
 			}
 		},
