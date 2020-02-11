@@ -37,6 +37,15 @@ async def update_category(exercise_id: str = Path(..., regex=REGEXP_ID),
     return await ExerciseService.get(exercise_id)
 
 
+@router.delete('/{exercise_id}/delete')
+@db.transaction()
+async def delete_category(exercise_id: str = Path(..., regex=REGEXP_ID),
+                          user: User = Depends(CurrentUser.get)):
+    await CommonService.check_entity_belongs_to_user(Exercise.__table__, exercise_id, user.id)
+    await CommonService.delete_entity(Exercise.__table__, exercise_id)
+    return True
+
+
 @router.get('/{exercise_id}/history', response_model=List[WorkoutExercise])
 async def view_exercise_history(exercise_id: str = Path(..., regex=REGEXP_ID),
                                 user: User = Depends(CurrentUser.get)):

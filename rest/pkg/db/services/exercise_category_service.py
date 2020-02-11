@@ -59,12 +59,3 @@ class ExerciseCategoryService:
             .where(categories.c.is_deleted == false()) \
             .values(name=data.name)
         await db.execute(query)
-
-    @staticmethod
-    async def delete(category_id: str):
-        categories = ExerciseCategory.__table__
-        query = categories.update() \
-            .where(categories.c.id == category_id) \
-            .where(categories.c.is_main == false()) \
-            .values(is_deleted=True)
-        await db.execute(query)

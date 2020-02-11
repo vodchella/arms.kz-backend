@@ -46,7 +46,7 @@ async def delete_category(category_id: str = Path(..., regex=REGEXP_ID),
     category = ExerciseCategoryDTO(** await ExerciseCategoryService.find_main(user.id))
     if category.id != category_id:
         await ExerciseService.move_exercises(category_id, category.id)
-        await ExerciseCategoryService.delete(category_id)
+        await CommonService.delete_entity(ExerciseCategory.__table__, category_id)
         return True
     else:
         raise CustomException('Нельзя удалить основную категорию')

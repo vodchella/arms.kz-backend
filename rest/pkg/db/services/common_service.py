@@ -17,3 +17,10 @@ class CommonService:
         result = dict(row)['cnt'] != 0 if row is not None else False
         if not result:
             raise CustomException('Недостаточно прав для просмотра записи')
+
+    @staticmethod
+    async def delete_entity(table: Table, entity_id: str):
+        query = table.update() \
+            .where(table.c.id == entity_id) \
+            .values(is_deleted=True)
+        await db.execute(query)
