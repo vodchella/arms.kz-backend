@@ -41,6 +41,17 @@ class ExerciseService:
         return exercise_id
 
     @staticmethod
+    async def update(exercise_id: str, data: ExerciseDTO):
+        exercises = Exercise.__table__
+        query = exercises.update() \
+            .where(exercises.c.id == exercise_id) \
+            .where(exercises.c.is_deleted == false()) \
+            .values(name=data.name,
+                    category_id=data.category_id,
+                    both_hands=data.both_hands)
+        await db.execute(query)
+
+    @staticmethod
     async def move_exercises(from_category_id: str, to_category_id: str):
         exercises = Exercise.__table__
         query = exercises.update() \

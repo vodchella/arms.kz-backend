@@ -27,6 +27,16 @@ async def create_exercise(data: ExerciseDTO = Body(...),
     return await ExerciseService.get(exercise_id)
 
 
+@router.post('/{exercise_id}/update', response_model=ExerciseDTO)
+@db.transaction()
+async def update_category(exercise_id: str = Path(..., regex=REGEXP_ID),
+                          data: ExerciseDTO = Body(...),
+                          user: User = Depends(CurrentUser.get)):
+    await CommonService.check_entity_belongs_to_user(Exercise.__table__, exercise_id, user.id)
+    await ExerciseService.update(exercise_id, data)
+    return await ExerciseService.get(exercise_id)
+
+
 @router.get('/{exercise_id}/history', response_model=List[WorkoutExercise])
 async def view_exercise_history(exercise_id: str = Path(..., regex=REGEXP_ID),
                                 user: User = Depends(CurrentUser.get)):
