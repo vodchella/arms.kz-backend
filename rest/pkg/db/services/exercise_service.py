@@ -1,6 +1,8 @@
 from pkg.db import db
 from pkg.db.models.exercise import Exercise
 from pkg.db.models.workout import Workout, WorkoutExercise
+from pkg.rest.models.exercise import Exercise as ExerciseDTO
+from pkg.utils.db import generate_unique_id
 from sqlalchemy import desc, nullslast
 from sqlalchemy.sql import Select
 from sqlalchemy.sql.expression import false
@@ -25,6 +27,18 @@ class ExerciseService:
             .where(e.c.is_deleted == false()) \
             .order_by(nullslast(desc(w.c.date)))
         return await db.fetch_all(query)
+
+    @staticmethod
+    async def create(data: ExerciseDTO, user_id: str):
+        exercises = Exercise.__table__
+        exercise_id = generate_unique_id()
+        query = exercises.insert().values(id=exercise_id,
+                                          user_id=user_id,
+                                          name=data.name,
+                                          category_id=data.category_id,
+                                          both_hands=data.both_hands)
+        await db.execute(query)
+        return exercise_id
 
     @staticmethod
     async def move_exercises(from_category_id: str, to_category_id: str):
