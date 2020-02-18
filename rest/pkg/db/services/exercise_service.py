@@ -63,7 +63,9 @@ class ExerciseService:
     async def view_exercise_history(exercise_id: str):
         we = WorkoutExercise.__table__
         workouts = Workout.__table__
-        query = Select(columns=[*we.c, workouts.c.date.label('workout_date')]) \
+        query = Select(columns=[*we.c,
+                                workouts.c.date.label('workout_date'),
+                                workouts.c.id.label('workout_id')]) \
             .select_from(we.join(workouts)) \
             .where(workouts.c.is_deleted == false()) \
             .where(we.c.exercise_id == exercise_id) \

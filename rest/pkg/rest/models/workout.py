@@ -14,6 +14,10 @@ class WorkoutExerciseDTO(BaseModel):
     bh_value: Optional[int]
 
 
+class WorkoutExerciseForHistoryDTO(WorkoutExerciseDTO):
+    workout_id: str
+
+
 class WorkoutExerciseFullDTO(WorkoutExerciseDTO):
     exercise_id: str
     exercise_name: Optional[str]

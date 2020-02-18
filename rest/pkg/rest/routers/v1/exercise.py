@@ -6,7 +6,7 @@ from pkg.db.services.common_service import CommonService
 from pkg.db.services.exercise_service import ExerciseService
 from pkg.rest.dependencies.current_user import CurrentUser
 from pkg.rest.models.exercise import ExerciseForListingDTO, ExerciseDTO
-from pkg.rest.models.workout import WorkoutExerciseDTO
+from pkg.rest.models.workout import WorkoutExerciseForHistoryDTO
 from pkg.rest.models.user import UserDTO
 from typing import List
 
@@ -53,7 +53,7 @@ async def delete_category(exercise_id: str = Path(..., regex=REGEXP_ID),
     return True
 
 
-@router.get('/{exercise_id}/history', response_model=List[WorkoutExerciseDTO])
+@router.get('/{exercise_id}/history', response_model=List[WorkoutExerciseForHistoryDTO])
 async def view_exercise_history(exercise_id: str = Path(..., regex=REGEXP_ID),
                                 user: UserDTO = Depends(CurrentUser.get)):
     await CommonService.check_entity_belongs_to_user(Exercise.__table__, exercise_id, user.id)
