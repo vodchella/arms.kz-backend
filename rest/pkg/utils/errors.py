@@ -4,12 +4,20 @@ import traceback
 from pkg.constants.error_codes import ERROR_CUSTOM_EXCEPTION, ERROR_TEXT_MAP
 from pkg.constants.logging import REST_LOGGER_NAME
 from starlette.responses import JSONResponse
-from starlette.status import HTTP_404_NOT_FOUND, HTTP_500_INTERNAL_SERVER_ERROR, HTTP_401_UNAUTHORIZED
+from starlette.status import HTTP_404_NOT_FOUND, HTTP_500_INTERNAL_SERVER_ERROR, HTTP_401_UNAUTHORIZED, \
+    HTTP_403_FORBIDDEN
 
 
 class CustomException(Exception):
     def __init__(self, detail: str) -> None:
         self.error_code = ERROR_CUSTOM_EXCEPTION
+        self.detail = detail
+
+
+class CustomHTTPException(Exception):
+    def __init__(self, http_error_code: int, app_error_code: int, detail: str) -> None:
+        self.error_code = app_error_code
+        self.http_error_code = http_error_code
         self.detail = detail
 
 
@@ -24,7 +32,7 @@ def get_raised_error(full: bool = False):
         return (e[-1:][0]).strip('\n')
 
 
-IGNORED_HTTP_CODES = [HTTP_404_NOT_FOUND, HTTP_401_UNAUTHORIZED, ]
+IGNORED_HTTP_CODES = [HTTP_404_NOT_FOUND, HTTP_401_UNAUTHORIZED, HTTP_403_FORBIDDEN, ]
 
 
 def response_error(code: int,
