@@ -50,7 +50,7 @@ async def http_exceptions_handler(request: Request, exc: HTTPException):
 async def custom_http_exceptions_handler(request: Request, exc: CustomHTTPException):
     return response_error(
         exc.error_code,
-        str(exc.detail),
+        exc.detail,
         exc.http_error_code,
         log_stacktrace=False
     )

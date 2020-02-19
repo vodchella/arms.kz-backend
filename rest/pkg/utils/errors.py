@@ -15,7 +15,7 @@ class CustomException(Exception):
 
 
 class CustomHTTPException(Exception):
-    def __init__(self, http_error_code: int, app_error_code: int, detail: str) -> None:
+    def __init__(self, http_error_code: int, app_error_code: int, detail: str = None) -> None:
         self.error_code = app_error_code
         self.http_error_code = http_error_code
         self.detail = detail
