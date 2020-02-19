@@ -1,4 +1,4 @@
-from fastapi import Depends, HTTPException
+from fastapi import Depends
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from pkg.constants.error_codes import ERROR_INVALID_TOKEN, ERROR_USER_IS_BLOCKED, ERROR_USER_DOESNT_EXISTS
 from pkg.db.services.user_service import UserService

@@ -16,6 +16,7 @@ class WorkoutExerciseDTO(BaseModel):
 
 class WorkoutExerciseForHistoryDTO(WorkoutExerciseDTO):
     workout_id: str
+    workout_date: datetime
 
 
 class WorkoutExerciseFullDTO(WorkoutExerciseDTO):
