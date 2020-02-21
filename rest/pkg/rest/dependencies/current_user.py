@@ -19,8 +19,8 @@ async def _get_current_user(token: str, expected_token_type: str) -> UserDTO:
             if payload.key == user['token_key']:
                 if user['is_active']:
                     return UserDTO(**user)
-                else:
-                    raise CustomHTTPException(HTTP_403_FORBIDDEN, ERROR_USER_IS_BLOCKED)
+                raise CustomHTTPException(HTTP_403_FORBIDDEN, ERROR_USER_IS_BLOCKED)
+            raise CustomHTTPException(HTTP_403_FORBIDDEN, ERROR_INVALID_TOKEN)
         raise CustomHTTPException(HTTP_403_FORBIDDEN, ERROR_USER_DOESNT_EXISTS)
     raise CustomHTTPException(HTTP_403_FORBIDDEN, ERROR_INVALID_TOKEN)
 
