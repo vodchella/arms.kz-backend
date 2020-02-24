@@ -2,7 +2,7 @@ from pkg.db import db
 from pkg.db.models.exercise import ExerciseCategory
 from pkg.rest.models.exercise import ExerciseCategoryDTO
 from pkg.utils.db import generate_unique_id
-from sqlalchemy.sql.expression import false, true
+from sqlalchemy.sql.expression import false, true, desc
 
 
 class ExerciseCategoryService:
@@ -31,7 +31,7 @@ class ExerciseCategoryService:
         query = categories.select() \
             .where(categories.c.user_id == user_id) \
             .where(categories.c.is_deleted == false()) \
-            .order_by(categories.c.name)
+            .order_by(desc(categories.c.is_main), categories.c.name)
         return await db.fetch_all(query)
 
     @staticmethod
