@@ -2,7 +2,7 @@ aiofiles==0.4.0
 aniso8601==7.0.0
 async-exit-stack==1.0.1
 async-generator==1.10
-asyncpg==0.20.1
+asyncpg==0.21.0
 behave==1.2.6
 certifi==2019.11.28
 chardet==3.0.4
