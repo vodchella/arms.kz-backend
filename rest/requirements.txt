@@ -4,7 +4,7 @@ async-exit-stack==1.0.1
 async-generator==1.10
 asyncpg==0.20.1
 behave==1.2.6
-certifi==2019.11.28
+certifi==2022.12.7
 chardet==3.0.4
 Click==7.0
 databases==0.2.6
